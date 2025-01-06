@@ -20,7 +20,7 @@ Wnętrze języka korzysta z generatora PLY.
 
 ### Aktualnie interpreter obsługuje:
 <ul>
-  <li>Deklaracje zmiannych</li>
+  <li>Deklaracje zmiannych (typu numerycznego)</li>
   <li>Deklaracje funkcji wraz z ich wywoływaniem</li>
   <li>Zmianę wartości zmiennej po jej deklaracji wraz z przypisaniem wyniku funkcji</li>
   <li>Wypisywanie na standardowym wyjściu tekstów oraz wartości zmiennych</li>
@@ -51,4 +51,9 @@ Po zadeklarowaniu zmiennej w taki sposób przechowana zostanie pod nią wartoś�
 Możemy następnie wypisać ją na ekranie:
 ```
 wypisz [x];
+```
+
+Alternatywnie możemy od razu wyświetlić zwróconą przez funkcję wartość, np.:
+```
+wypisz [fib[15]];
 ```

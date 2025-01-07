@@ -12,14 +12,27 @@ class Interpreter:
         node_type = node[0]
 
         if node_type == 'przypisz':  # Przypisanie zmiennej
-            _, name, value, = node
-            eval_value = self.eval_expression(value)
-            self.variables[name] = float(eval_value)
+            if len(node) == 3:
+                _, name, value, = node
+                eval_value = self.eval_expression(value)
+                self.variables[name] = float(eval_value)
+            elif len(node) == 4:
+                _, name, indeks, value = node
+                eval_value = self.eval_expression(value)
+                if name not in self.variables:
+                    raise ValueError(f'Nieznana tablica: {name}')
+                elif re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
+                    raise IndexError(f'Indeks musi być liczbą: {indeks}')
+                elif not isinstance(self.variables[name], list):
+                    raise IndexError(f'Próba indeksowania zmiennej! {name}')
+                elif int(indeks) >= len(self.variables[name]):
+                    raise IndexError(f'Indeks większy niż długość tablicy! {name}, {indeks}')
+                self.variables[name][int(indeks)] = float(eval_value)
             
         elif node_type == 'deklaracja':  # Deklaracja zmiennej
             _, name, value = node
             eval_value = self.eval_expression(value)
-            self.variables[name] = float(eval_value)
+            self.variables[name] = eval_value
             
         elif node_type == 'wypisz':  # Wypisywanie wartości
             _, value = node
@@ -101,9 +114,12 @@ class Interpreter:
             return node
         elif isinstance(node, str):
             if node not in self.variables:
+                if re.match(r'"([^"]*)"', node) != None:
+                    return node.strip('"')
                 return node
             return self.variables[node]
-        
+        elif isinstance(node, list):
+            return node
         node_type = node[0]
 
         if node_type == 'plus':  # Dodawanie
@@ -138,6 +154,18 @@ class Interpreter:
             _, left, right = node
             return self.eval_expression(left) != self.eval_expression(right)
         
+        elif node_type == 'indeksowanie':
+            _, tab, indeks = node
+            if tab not in self.variables:
+                raise ValueError(f'Nieznana tablica: {tab}')
+            elif re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
+                raise IndexError(f'Indeks musi być liczbą: {indeks}')
+            elif not isinstance(self.variables[tab], list):
+                raise IndexError(f'Próba indeksowania zmiennej! {tab}')
+            elif int(indeks) >= len(self.variables[tab]):
+                raise IndexError(f'Indeks większy niż długość tablicy! {tab}, {indeks}')
+            return self.eval_expression(self.variables[tab][int(indeks)])
+
         elif node_type == 'wywolanie':  # Wywołanie funkcji
             _, name, args = node
             if name not in self.functions:

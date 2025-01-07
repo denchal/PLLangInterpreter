@@ -20,7 +20,7 @@ Wnętrze języka korzysta z generatora PLY.
 
 ### Aktualnie interpreter obsługuje:
 <ul>
-  <li>Deklaracje zmiannych (typu numerycznego)</li>
+  <li>Deklaracje zmiannych (typu numerycznego, tekstowego i tablicowego)</li>
   <li>Deklaracje funkcji wraz z ich wywoływaniem</li>
   <li>Zmianę wartości zmiennej po jej deklaracji wraz z przypisaniem wyniku funkcji</li>
   <li>Wypisywanie na standardowym wyjściu tekstów oraz wartości zmiennych</li>

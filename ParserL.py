@@ -32,8 +32,12 @@ def p_deklaracja(p):
     p[0] = ('deklaracja', p[2], p[4])
 
 def p_przypisz(p):
-    '''przypisz : IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON'''
-    p[0] = ('przypisz', p[1], p[3])
+    '''przypisz : IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
+                | IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON'''
+    if len(p) == 5:
+        p[0] = ('przypisz', p[1], p[3])
+    else:
+        p[0] = ('przypisz', p[1], p[3], p[6])
 
 def p_funkcja(p):
     '''funkcja : FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok'''
@@ -51,6 +55,12 @@ def p_parametry(p):
         p[0] = [p[1]]
     else:
         p[0] = []
+
+
+def p_tablica(p):
+    '''tablica : LA parametry RA'''
+    p[0] = p[2]
+
 
 def p_blok(p):
     '''blok : LB instrukcje RB'''
@@ -92,9 +102,14 @@ def p_wyrazenie(p):
                  | wyrazenie ROZNE wyrazenie
                  | wywolanie
                  | IDENTYFIKATOR
-                 | LICZBA'''
+                 | LICZBA
+                 | tablica
+                 | TEKST
+                 | IDENTYFIKATOR LA LICZBA RA'''
     if len(p) == 4:
         p[0] = (p[2], p[1], p[3])
+    elif len(p) == 5:
+        p[0] = ('indeksowanie', p[1], p[3])
     else:
         p[0] = p[1]
 

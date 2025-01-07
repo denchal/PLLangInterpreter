@@ -2,7 +2,7 @@
 import ply.lex as lex
 
 tokens = [
-    'IDENTYFIKATOR'
+    'IDENTYFIKATOR', 'TEKST'
 ]
 
 reserved = {'załóżmy' : 'ZALOZMY',
@@ -31,6 +31,8 @@ reserved = {'załóżmy' : 'ZALOZMY',
             'liczba' : 'LICZBA',
             '{' : 'LB',
             '}' : 'RB',
+            '<' : 'LA',
+            '>' : 'RA'
             }
 
 tokens += reserved.values()
@@ -49,6 +51,8 @@ t_LP = r'\['
 t_RP = r'\]'
 t_LB = r'\{'
 t_RB = r'\}'
+t_LA = r'\<'
+t_RA = r'\>'
 t_DWUKROPEK = r':'
 t_SEMIKOLON = r';'
 t_PRZECINEK = r','
@@ -62,6 +66,11 @@ t_PRZYPISZ = r'przypisz'
 t_WYPISZ = r'wypisz'
 t_ZWROC = r'zwróć'
 t_WPISZ = r'wpisz'
+
+def t_TEKST(t):
+    r'"([^"]*)"'
+    t.value = str(t.value)
+    return t
 
 def t_LICZBA(t):
     r'[+-]?(\d+(\.\d*)?)'

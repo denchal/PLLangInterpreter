@@ -10,8 +10,9 @@ def main():
     lexer = lex.lex()
     parser = yacc.yacc()
     filename = sys.argv[1]
-    file = open(filename, "r")
+    file = open(filename, "r", encoding='utf-8')
     result = parser.parse(file.read())
+    print(result[1])
     interpreter = Interpreter()
     for stmt in result[1]:
         interpreter.execute(stmt)

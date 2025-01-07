@@ -1,0 +1,3395 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> instrukcje
+Rule 2     instrukcje -> instrukcja instrukcje
+Rule 3     instrukcje -> instrukcja
+Rule 4     instrukcja -> deklaracja
+Rule 5     instrukcja -> funkcja
+Rule 6     instrukcja -> petla
+Rule 7     instrukcja -> warunek
+Rule 8     instrukcja -> wypisz
+Rule 9     instrukcja -> zwroc
+Rule 10    instrukcja -> przypisz
+Rule 11    instrukcja -> wywolanie
+Rule 12    instrukcja -> instr_warunkowa
+Rule 13    instrukcja -> wpisz
+Rule 14    deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
+Rule 15    deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON
+Rule 16    przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
+Rule 17    przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+Rule 18    funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok
+Rule 19    parametry -> IDENTYFIKATOR PRZECINEK parametry
+Rule 20    parametry -> LICZBA PRZECINEK parametry
+Rule 21    parametry -> wyrazenie PRZECINEK parametry
+Rule 22    parametry -> wyrazenie
+Rule 23    parametry -> <empty>
+Rule 24    tablica -> LA parametry RA
+Rule 25    blok -> LB instrukcje RB
+Rule 26    petla -> DOPUKI LP warunek RP DWUKROPEK blok
+Rule 27    instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+Rule 28    instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok
+Rule 29    warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie
+Rule 30    warunek -> wyrazenie MNIEJSZE_OD wyrazenie
+Rule 31    warunek -> wyrazenie WIEKSZE_OD wyrazenie
+Rule 32    warunek -> wyrazenie WYNOSI wyrazenie
+Rule 33    warunek -> wyrazenie ROZNE wyrazenie
+Rule 34    warunek -> IDENTYFIKATOR
+Rule 35    warunek -> LICZBA
+Rule 36    wyrazenie -> wyrazenie PLUS wyrazenie
+Rule 37    wyrazenie -> wyrazenie MINUS wyrazenie
+Rule 38    wyrazenie -> wyrazenie RAZY wyrazenie
+Rule 39    wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie
+Rule 40    wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie
+Rule 41    wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie
+Rule 42    wyrazenie -> wyrazenie WYNOSI wyrazenie
+Rule 43    wyrazenie -> wyrazenie ROZNE wyrazenie
+Rule 44    wyrazenie -> wywolanie
+Rule 45    wyrazenie -> IDENTYFIKATOR
+Rule 46    wyrazenie -> LICZBA
+Rule 47    wyrazenie -> tablica
+Rule 48    wyrazenie -> TEKST
+Rule 49    wyrazenie -> IDENTYFIKATOR LA LICZBA RA
+Rule 50    wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON
+Rule 51    wypisz -> WYPISZ LP wywolanie RP SEMIKOLON
+Rule 52    zwroc -> ZWROC LP wyrazenie RP SEMIKOLON
+Rule 53    zwroc -> ZWROC LP wywolanie RP SEMIKOLON
+Rule 54    wywolanie -> IDENTYFIKATOR LP parametry RP
+Rule 55    wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON
+
+Terminals, with rules where they appear
+
+DOPUKI               : 26
+DWUKROPEK            : 18 26 27 27 28
+FUNKCJA              : 18
+IDENTYFIKATOR        : 14 15 16 17 18 19 34 45 49 54 55
+JEZELI               : 27 28
+LA                   : 17 24 49
+LB                   : 25
+LICZBA               : 17 20 35 46 49
+LP                   : 18 26 27 28 50 51 52 53 54
+MINUS                : 37
+MNIEJSZE_OD          : 30 40
+PLUS                 : 36
+PODZIELONE_PRZEZ     : 29 39
+PRZECINEK            : 19 20 21
+PRZYPISZ             : 16 17
+RA                   : 17 24 49
+RAZY                 : 38
+RB                   : 25
+ROWNE                : 14 15
+ROZNE                : 33 43
+RP                   : 18 26 27 28 50 51 52 53 54
+SEMIKOLON            : 14 15 16 17 50 51 52 53 55
+TEKST                : 48
+WIEKSZE_OD           : 31 41
+WPISZ                : 55
+WYNOSI               : 32 42
+WYPISZ               : 50 51
+W_PRZECIWNYM_WYPADKU : 27
+ZALOZMY              : 14 15
+ZWROC                : 52 53
+error                : 
+
+Nonterminals, with rules where they appear
+
+blok                 : 18 26 27 27 28
+deklaracja           : 4
+funkcja              : 5
+instr_warunkowa      : 12
+instrukcja           : 2 3
+instrukcje           : 1 2 25
+parametry            : 18 19 20 21 24 54
+petla                : 6
+program              : 0
+przypisz             : 10
+tablica              : 47
+warunek              : 7 26 27 28
+wpisz                : 13
+wypisz               : 8
+wyrazenie            : 14 16 17 21 22 29 29 30 30 31 31 32 32 33 33 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 50 52
+wywolanie            : 11 15 44 51 53
+zwroc                : 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . instrukcje
+    (2) instrukcje -> . instrukcja instrukcje
+    (3) instrukcje -> . instrukcja
+    (4) instrukcja -> . deklaracja
+    (5) instrukcja -> . funkcja
+    (6) instrukcja -> . petla
+    (7) instrukcja -> . warunek
+    (8) instrukcja -> . wypisz
+    (9) instrukcja -> . zwroc
+    (10) instrukcja -> . przypisz
+    (11) instrukcja -> . wywolanie
+    (12) instrukcja -> . instr_warunkowa
+    (13) instrukcja -> . wpisz
+    (14) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
+    (15) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON
+    (18) funkcja -> . FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok
+    (26) petla -> . DOPUKI LP warunek RP DWUKROPEK blok
+    (29) warunek -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (31) warunek -> . wyrazenie WIEKSZE_OD wyrazenie
+    (32) warunek -> . wyrazenie WYNOSI wyrazenie
+    (33) warunek -> . wyrazenie ROZNE wyrazenie
+    (34) warunek -> . IDENTYFIKATOR
+    (35) warunek -> . LICZBA
+    (50) wypisz -> . WYPISZ LP wyrazenie RP SEMIKOLON
+    (51) wypisz -> . WYPISZ LP wywolanie RP SEMIKOLON
+    (52) zwroc -> . ZWROC LP wyrazenie RP SEMIKOLON
+    (53) zwroc -> . ZWROC LP wywolanie RP SEMIKOLON
+    (16) przypisz -> . IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
+    (17) przypisz -> . IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (27) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok
+    (55) wpisz -> . WPISZ IDENTYFIKATOR SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (24) tablica -> . LA parametry RA
+
+    ZALOZMY         shift and go to state 14
+    FUNKCJA         shift and go to state 17
+    DOPUKI          shift and go to state 18
+    IDENTYFIKATOR   shift and go to state 15
+    LICZBA          shift and go to state 19
+    WYPISZ          shift and go to state 20
+    ZWROC           shift and go to state 21
+    JEZELI          shift and go to state 23
+    WPISZ           shift and go to state 24
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    program                        shift and go to state 1
+    instrukcje                     shift and go to state 2
+    instrukcja                     shift and go to state 3
+    deklaracja                     shift and go to state 4
+    funkcja                        shift and go to state 5
+    petla                          shift and go to state 6
+    warunek                        shift and go to state 7
+    wypisz                         shift and go to state 8
+    zwroc                          shift and go to state 9
+    przypisz                       shift and go to state 10
+    wywolanie                      shift and go to state 11
+    instr_warunkowa                shift and go to state 12
+    wpisz                          shift and go to state 13
+    wyrazenie                      shift and go to state 16
+    tablica                        shift and go to state 25
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> instrukcje .
+
+    $end            reduce using rule 1 (program -> instrukcje .)
+
+
+state 3
+
+    (2) instrukcje -> instrukcja . instrukcje
+    (3) instrukcje -> instrukcja .
+    (2) instrukcje -> . instrukcja instrukcje
+    (3) instrukcje -> . instrukcja
+    (4) instrukcja -> . deklaracja
+    (5) instrukcja -> . funkcja
+    (6) instrukcja -> . petla
+    (7) instrukcja -> . warunek
+    (8) instrukcja -> . wypisz
+    (9) instrukcja -> . zwroc
+    (10) instrukcja -> . przypisz
+    (11) instrukcja -> . wywolanie
+    (12) instrukcja -> . instr_warunkowa
+    (13) instrukcja -> . wpisz
+    (14) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
+    (15) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON
+    (18) funkcja -> . FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok
+    (26) petla -> . DOPUKI LP warunek RP DWUKROPEK blok
+    (29) warunek -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (31) warunek -> . wyrazenie WIEKSZE_OD wyrazenie
+    (32) warunek -> . wyrazenie WYNOSI wyrazenie
+    (33) warunek -> . wyrazenie ROZNE wyrazenie
+    (34) warunek -> . IDENTYFIKATOR
+    (35) warunek -> . LICZBA
+    (50) wypisz -> . WYPISZ LP wyrazenie RP SEMIKOLON
+    (51) wypisz -> . WYPISZ LP wywolanie RP SEMIKOLON
+    (52) zwroc -> . ZWROC LP wyrazenie RP SEMIKOLON
+    (53) zwroc -> . ZWROC LP wywolanie RP SEMIKOLON
+    (16) przypisz -> . IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
+    (17) przypisz -> . IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (27) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok
+    (55) wpisz -> . WPISZ IDENTYFIKATOR SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (24) tablica -> . LA parametry RA
+
+    $end            reduce using rule 3 (instrukcje -> instrukcja .)
+    RB              reduce using rule 3 (instrukcje -> instrukcja .)
+    ZALOZMY         shift and go to state 14
+    FUNKCJA         shift and go to state 17
+    DOPUKI          shift and go to state 18
+    IDENTYFIKATOR   shift and go to state 15
+    LICZBA          shift and go to state 19
+    WYPISZ          shift and go to state 20
+    ZWROC           shift and go to state 21
+    JEZELI          shift and go to state 23
+    WPISZ           shift and go to state 24
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    instrukcja                     shift and go to state 3
+    instrukcje                     shift and go to state 27
+    deklaracja                     shift and go to state 4
+    funkcja                        shift and go to state 5
+    petla                          shift and go to state 6
+    warunek                        shift and go to state 7
+    wypisz                         shift and go to state 8
+    zwroc                          shift and go to state 9
+    przypisz                       shift and go to state 10
+    wywolanie                      shift and go to state 11
+    instr_warunkowa                shift and go to state 12
+    wpisz                          shift and go to state 13
+    wyrazenie                      shift and go to state 16
+    tablica                        shift and go to state 25
+
+state 4
+
+    (4) instrukcja -> deklaracja .
+
+    ZALOZMY         reduce using rule 4 (instrukcja -> deklaracja .)
+    FUNKCJA         reduce using rule 4 (instrukcja -> deklaracja .)
+    DOPUKI          reduce using rule 4 (instrukcja -> deklaracja .)
+    IDENTYFIKATOR   reduce using rule 4 (instrukcja -> deklaracja .)
+    LICZBA          reduce using rule 4 (instrukcja -> deklaracja .)
+    WYPISZ          reduce using rule 4 (instrukcja -> deklaracja .)
+    ZWROC           reduce using rule 4 (instrukcja -> deklaracja .)
+    JEZELI          reduce using rule 4 (instrukcja -> deklaracja .)
+    WPISZ           reduce using rule 4 (instrukcja -> deklaracja .)
+    TEKST           reduce using rule 4 (instrukcja -> deklaracja .)
+    LA              reduce using rule 4 (instrukcja -> deklaracja .)
+    $end            reduce using rule 4 (instrukcja -> deklaracja .)
+    RB              reduce using rule 4 (instrukcja -> deklaracja .)
+
+
+state 5
+
+    (5) instrukcja -> funkcja .
+
+    ZALOZMY         reduce using rule 5 (instrukcja -> funkcja .)
+    FUNKCJA         reduce using rule 5 (instrukcja -> funkcja .)
+    DOPUKI          reduce using rule 5 (instrukcja -> funkcja .)
+    IDENTYFIKATOR   reduce using rule 5 (instrukcja -> funkcja .)
+    LICZBA          reduce using rule 5 (instrukcja -> funkcja .)
+    WYPISZ          reduce using rule 5 (instrukcja -> funkcja .)
+    ZWROC           reduce using rule 5 (instrukcja -> funkcja .)
+    JEZELI          reduce using rule 5 (instrukcja -> funkcja .)
+    WPISZ           reduce using rule 5 (instrukcja -> funkcja .)
+    TEKST           reduce using rule 5 (instrukcja -> funkcja .)
+    LA              reduce using rule 5 (instrukcja -> funkcja .)
+    $end            reduce using rule 5 (instrukcja -> funkcja .)
+    RB              reduce using rule 5 (instrukcja -> funkcja .)
+
+
+state 6
+
+    (6) instrukcja -> petla .
+
+    ZALOZMY         reduce using rule 6 (instrukcja -> petla .)
+    FUNKCJA         reduce using rule 6 (instrukcja -> petla .)
+    DOPUKI          reduce using rule 6 (instrukcja -> petla .)
+    IDENTYFIKATOR   reduce using rule 6 (instrukcja -> petla .)
+    LICZBA          reduce using rule 6 (instrukcja -> petla .)
+    WYPISZ          reduce using rule 6 (instrukcja -> petla .)
+    ZWROC           reduce using rule 6 (instrukcja -> petla .)
+    JEZELI          reduce using rule 6 (instrukcja -> petla .)
+    WPISZ           reduce using rule 6 (instrukcja -> petla .)
+    TEKST           reduce using rule 6 (instrukcja -> petla .)
+    LA              reduce using rule 6 (instrukcja -> petla .)
+    $end            reduce using rule 6 (instrukcja -> petla .)
+    RB              reduce using rule 6 (instrukcja -> petla .)
+
+
+state 7
+
+    (7) instrukcja -> warunek .
+
+    ZALOZMY         reduce using rule 7 (instrukcja -> warunek .)
+    FUNKCJA         reduce using rule 7 (instrukcja -> warunek .)
+    DOPUKI          reduce using rule 7 (instrukcja -> warunek .)
+    IDENTYFIKATOR   reduce using rule 7 (instrukcja -> warunek .)
+    LICZBA          reduce using rule 7 (instrukcja -> warunek .)
+    WYPISZ          reduce using rule 7 (instrukcja -> warunek .)
+    ZWROC           reduce using rule 7 (instrukcja -> warunek .)
+    JEZELI          reduce using rule 7 (instrukcja -> warunek .)
+    WPISZ           reduce using rule 7 (instrukcja -> warunek .)
+    TEKST           reduce using rule 7 (instrukcja -> warunek .)
+    LA              reduce using rule 7 (instrukcja -> warunek .)
+    $end            reduce using rule 7 (instrukcja -> warunek .)
+    RB              reduce using rule 7 (instrukcja -> warunek .)
+
+
+state 8
+
+    (8) instrukcja -> wypisz .
+
+    ZALOZMY         reduce using rule 8 (instrukcja -> wypisz .)
+    FUNKCJA         reduce using rule 8 (instrukcja -> wypisz .)
+    DOPUKI          reduce using rule 8 (instrukcja -> wypisz .)
+    IDENTYFIKATOR   reduce using rule 8 (instrukcja -> wypisz .)
+    LICZBA          reduce using rule 8 (instrukcja -> wypisz .)
+    WYPISZ          reduce using rule 8 (instrukcja -> wypisz .)
+    ZWROC           reduce using rule 8 (instrukcja -> wypisz .)
+    JEZELI          reduce using rule 8 (instrukcja -> wypisz .)
+    WPISZ           reduce using rule 8 (instrukcja -> wypisz .)
+    TEKST           reduce using rule 8 (instrukcja -> wypisz .)
+    LA              reduce using rule 8 (instrukcja -> wypisz .)
+    $end            reduce using rule 8 (instrukcja -> wypisz .)
+    RB              reduce using rule 8 (instrukcja -> wypisz .)
+
+
+state 9
+
+    (9) instrukcja -> zwroc .
+
+    ZALOZMY         reduce using rule 9 (instrukcja -> zwroc .)
+    FUNKCJA         reduce using rule 9 (instrukcja -> zwroc .)
+    DOPUKI          reduce using rule 9 (instrukcja -> zwroc .)
+    IDENTYFIKATOR   reduce using rule 9 (instrukcja -> zwroc .)
+    LICZBA          reduce using rule 9 (instrukcja -> zwroc .)
+    WYPISZ          reduce using rule 9 (instrukcja -> zwroc .)
+    ZWROC           reduce using rule 9 (instrukcja -> zwroc .)
+    JEZELI          reduce using rule 9 (instrukcja -> zwroc .)
+    WPISZ           reduce using rule 9 (instrukcja -> zwroc .)
+    TEKST           reduce using rule 9 (instrukcja -> zwroc .)
+    LA              reduce using rule 9 (instrukcja -> zwroc .)
+    $end            reduce using rule 9 (instrukcja -> zwroc .)
+    RB              reduce using rule 9 (instrukcja -> zwroc .)
+
+
+state 10
+
+    (10) instrukcja -> przypisz .
+
+    ZALOZMY         reduce using rule 10 (instrukcja -> przypisz .)
+    FUNKCJA         reduce using rule 10 (instrukcja -> przypisz .)
+    DOPUKI          reduce using rule 10 (instrukcja -> przypisz .)
+    IDENTYFIKATOR   reduce using rule 10 (instrukcja -> przypisz .)
+    LICZBA          reduce using rule 10 (instrukcja -> przypisz .)
+    WYPISZ          reduce using rule 10 (instrukcja -> przypisz .)
+    ZWROC           reduce using rule 10 (instrukcja -> przypisz .)
+    JEZELI          reduce using rule 10 (instrukcja -> przypisz .)
+    WPISZ           reduce using rule 10 (instrukcja -> przypisz .)
+    TEKST           reduce using rule 10 (instrukcja -> przypisz .)
+    LA              reduce using rule 10 (instrukcja -> przypisz .)
+    $end            reduce using rule 10 (instrukcja -> przypisz .)
+    RB              reduce using rule 10 (instrukcja -> przypisz .)
+
+
+state 11
+
+    (11) instrukcja -> wywolanie .
+    (44) wyrazenie -> wywolanie .
+
+    ZALOZMY         reduce using rule 11 (instrukcja -> wywolanie .)
+    FUNKCJA         reduce using rule 11 (instrukcja -> wywolanie .)
+    DOPUKI          reduce using rule 11 (instrukcja -> wywolanie .)
+    IDENTYFIKATOR   reduce using rule 11 (instrukcja -> wywolanie .)
+    LICZBA          reduce using rule 11 (instrukcja -> wywolanie .)
+    WYPISZ          reduce using rule 11 (instrukcja -> wywolanie .)
+    ZWROC           reduce using rule 11 (instrukcja -> wywolanie .)
+    JEZELI          reduce using rule 11 (instrukcja -> wywolanie .)
+    WPISZ           reduce using rule 11 (instrukcja -> wywolanie .)
+    TEKST           reduce using rule 11 (instrukcja -> wywolanie .)
+    LA              reduce using rule 11 (instrukcja -> wywolanie .)
+    $end            reduce using rule 11 (instrukcja -> wywolanie .)
+    RB              reduce using rule 11 (instrukcja -> wywolanie .)
+    PODZIELONE_PRZEZ reduce using rule 44 (wyrazenie -> wywolanie .)
+    MNIEJSZE_OD     reduce using rule 44 (wyrazenie -> wywolanie .)
+    WIEKSZE_OD      reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYNOSI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ROZNE           reduce using rule 44 (wyrazenie -> wywolanie .)
+    PLUS            reduce using rule 44 (wyrazenie -> wywolanie .)
+    MINUS           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RAZY            reduce using rule 44 (wyrazenie -> wywolanie .)
+
+
+state 12
+
+    (12) instrukcja -> instr_warunkowa .
+
+    ZALOZMY         reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    FUNKCJA         reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    DOPUKI          reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    IDENTYFIKATOR   reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    LICZBA          reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    WYPISZ          reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    ZWROC           reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    JEZELI          reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    WPISZ           reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    TEKST           reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    LA              reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    $end            reduce using rule 12 (instrukcja -> instr_warunkowa .)
+    RB              reduce using rule 12 (instrukcja -> instr_warunkowa .)
+
+
+state 13
+
+    (13) instrukcja -> wpisz .
+
+    ZALOZMY         reduce using rule 13 (instrukcja -> wpisz .)
+    FUNKCJA         reduce using rule 13 (instrukcja -> wpisz .)
+    DOPUKI          reduce using rule 13 (instrukcja -> wpisz .)
+    IDENTYFIKATOR   reduce using rule 13 (instrukcja -> wpisz .)
+    LICZBA          reduce using rule 13 (instrukcja -> wpisz .)
+    WYPISZ          reduce using rule 13 (instrukcja -> wpisz .)
+    ZWROC           reduce using rule 13 (instrukcja -> wpisz .)
+    JEZELI          reduce using rule 13 (instrukcja -> wpisz .)
+    WPISZ           reduce using rule 13 (instrukcja -> wpisz .)
+    TEKST           reduce using rule 13 (instrukcja -> wpisz .)
+    LA              reduce using rule 13 (instrukcja -> wpisz .)
+    $end            reduce using rule 13 (instrukcja -> wpisz .)
+    RB              reduce using rule 13 (instrukcja -> wpisz .)
+
+
+state 14
+
+    (14) deklaracja -> ZALOZMY . IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
+    (15) deklaracja -> ZALOZMY . IDENTYFIKATOR ROWNE wywolanie SEMIKOLON
+
+    IDENTYFIKATOR   shift and go to state 28
+
+
+state 15
+
+    (34) warunek -> IDENTYFIKATOR .
+    (16) przypisz -> IDENTYFIKATOR . PRZYPISZ wyrazenie SEMIKOLON
+    (17) przypisz -> IDENTYFIKATOR . LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+    (54) wywolanie -> IDENTYFIKATOR . LP parametry RP
+    (45) wyrazenie -> IDENTYFIKATOR .
+    (49) wyrazenie -> IDENTYFIKATOR . LA LICZBA RA
+
+  ! shift/reduce conflict for LA resolved as shift
+    ZALOZMY         reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    FUNKCJA         reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    DOPUKI          reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    IDENTYFIKATOR   reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    LICZBA          reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    WYPISZ          reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    ZWROC           reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    JEZELI          reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    WPISZ           reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    TEKST           reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    $end            reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    RB              reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    PRZYPISZ        shift and go to state 29
+    LA              shift and go to state 30
+    LP              shift and go to state 31
+    PODZIELONE_PRZEZ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MNIEJSZE_OD     reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WIEKSZE_OD      reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WYNOSI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ROZNE           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PLUS            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MINUS           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RAZY            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+
+  ! LA              [ reduce using rule 34 (warunek -> IDENTYFIKATOR .) ]
+
+
+state 16
+
+    (29) warunek -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (31) warunek -> wyrazenie . WIEKSZE_OD wyrazenie
+    (32) warunek -> wyrazenie . WYNOSI wyrazenie
+    (33) warunek -> wyrazenie . ROZNE wyrazenie
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    PODZIELONE_PRZEZ shift and go to state 32
+    MNIEJSZE_OD     shift and go to state 33
+    WIEKSZE_OD      shift and go to state 34
+    WYNOSI          shift and go to state 35
+    ROZNE           shift and go to state 36
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+
+
+state 17
+
+    (18) funkcja -> FUNKCJA . IDENTYFIKATOR LP parametry RP DWUKROPEK blok
+
+    IDENTYFIKATOR   shift and go to state 40
+
+
+state 18
+
+    (26) petla -> DOPUKI . LP warunek RP DWUKROPEK blok
+
+    LP              shift and go to state 41
+
+
+state 19
+
+    (35) warunek -> LICZBA .
+    (46) wyrazenie -> LICZBA .
+
+    ZALOZMY         reduce using rule 35 (warunek -> LICZBA .)
+    FUNKCJA         reduce using rule 35 (warunek -> LICZBA .)
+    DOPUKI          reduce using rule 35 (warunek -> LICZBA .)
+    IDENTYFIKATOR   reduce using rule 35 (warunek -> LICZBA .)
+    LICZBA          reduce using rule 35 (warunek -> LICZBA .)
+    WYPISZ          reduce using rule 35 (warunek -> LICZBA .)
+    ZWROC           reduce using rule 35 (warunek -> LICZBA .)
+    JEZELI          reduce using rule 35 (warunek -> LICZBA .)
+    WPISZ           reduce using rule 35 (warunek -> LICZBA .)
+    TEKST           reduce using rule 35 (warunek -> LICZBA .)
+    LA              reduce using rule 35 (warunek -> LICZBA .)
+    $end            reduce using rule 35 (warunek -> LICZBA .)
+    RB              reduce using rule 35 (warunek -> LICZBA .)
+    RP              reduce using rule 35 (warunek -> LICZBA .)
+    PODZIELONE_PRZEZ reduce using rule 46 (wyrazenie -> LICZBA .)
+    MNIEJSZE_OD     reduce using rule 46 (wyrazenie -> LICZBA .)
+    WIEKSZE_OD      reduce using rule 46 (wyrazenie -> LICZBA .)
+    WYNOSI          reduce using rule 46 (wyrazenie -> LICZBA .)
+    ROZNE           reduce using rule 46 (wyrazenie -> LICZBA .)
+    PLUS            reduce using rule 46 (wyrazenie -> LICZBA .)
+    MINUS           reduce using rule 46 (wyrazenie -> LICZBA .)
+    RAZY            reduce using rule 46 (wyrazenie -> LICZBA .)
+
+
+state 20
+
+    (50) wypisz -> WYPISZ . LP wyrazenie RP SEMIKOLON
+    (51) wypisz -> WYPISZ . LP wywolanie RP SEMIKOLON
+
+    LP              shift and go to state 42
+
+
+state 21
+
+    (52) zwroc -> ZWROC . LP wyrazenie RP SEMIKOLON
+    (53) zwroc -> ZWROC . LP wywolanie RP SEMIKOLON
+
+    LP              shift and go to state 43
+
+
+state 22
+
+    (24) tablica -> LA . parametry RA
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RA              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    parametry                      shift and go to state 44
+    wyrazenie                      shift and go to state 47
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 23
+
+    (27) instr_warunkowa -> JEZELI . LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI . LP warunek RP DWUKROPEK blok
+
+    LP              shift and go to state 49
+
+
+state 24
+
+    (55) wpisz -> WPISZ . IDENTYFIKATOR SEMIKOLON
+
+    IDENTYFIKATOR   shift and go to state 50
+
+
+state 25
+
+    (47) wyrazenie -> tablica .
+
+    PODZIELONE_PRZEZ reduce using rule 47 (wyrazenie -> tablica .)
+    MNIEJSZE_OD     reduce using rule 47 (wyrazenie -> tablica .)
+    WIEKSZE_OD      reduce using rule 47 (wyrazenie -> tablica .)
+    WYNOSI          reduce using rule 47 (wyrazenie -> tablica .)
+    ROZNE           reduce using rule 47 (wyrazenie -> tablica .)
+    PLUS            reduce using rule 47 (wyrazenie -> tablica .)
+    MINUS           reduce using rule 47 (wyrazenie -> tablica .)
+    RAZY            reduce using rule 47 (wyrazenie -> tablica .)
+    PRZECINEK       reduce using rule 47 (wyrazenie -> tablica .)
+    RA              reduce using rule 47 (wyrazenie -> tablica .)
+    SEMIKOLON       reduce using rule 47 (wyrazenie -> tablica .)
+    RP              reduce using rule 47 (wyrazenie -> tablica .)
+    ZALOZMY         reduce using rule 47 (wyrazenie -> tablica .)
+    FUNKCJA         reduce using rule 47 (wyrazenie -> tablica .)
+    DOPUKI          reduce using rule 47 (wyrazenie -> tablica .)
+    IDENTYFIKATOR   reduce using rule 47 (wyrazenie -> tablica .)
+    LICZBA          reduce using rule 47 (wyrazenie -> tablica .)
+    WYPISZ          reduce using rule 47 (wyrazenie -> tablica .)
+    ZWROC           reduce using rule 47 (wyrazenie -> tablica .)
+    JEZELI          reduce using rule 47 (wyrazenie -> tablica .)
+    WPISZ           reduce using rule 47 (wyrazenie -> tablica .)
+    TEKST           reduce using rule 47 (wyrazenie -> tablica .)
+    LA              reduce using rule 47 (wyrazenie -> tablica .)
+    $end            reduce using rule 47 (wyrazenie -> tablica .)
+    RB              reduce using rule 47 (wyrazenie -> tablica .)
+
+
+state 26
+
+    (48) wyrazenie -> TEKST .
+
+    PODZIELONE_PRZEZ reduce using rule 48 (wyrazenie -> TEKST .)
+    MNIEJSZE_OD     reduce using rule 48 (wyrazenie -> TEKST .)
+    WIEKSZE_OD      reduce using rule 48 (wyrazenie -> TEKST .)
+    WYNOSI          reduce using rule 48 (wyrazenie -> TEKST .)
+    ROZNE           reduce using rule 48 (wyrazenie -> TEKST .)
+    PLUS            reduce using rule 48 (wyrazenie -> TEKST .)
+    MINUS           reduce using rule 48 (wyrazenie -> TEKST .)
+    RAZY            reduce using rule 48 (wyrazenie -> TEKST .)
+    PRZECINEK       reduce using rule 48 (wyrazenie -> TEKST .)
+    RA              reduce using rule 48 (wyrazenie -> TEKST .)
+    SEMIKOLON       reduce using rule 48 (wyrazenie -> TEKST .)
+    RP              reduce using rule 48 (wyrazenie -> TEKST .)
+    ZALOZMY         reduce using rule 48 (wyrazenie -> TEKST .)
+    FUNKCJA         reduce using rule 48 (wyrazenie -> TEKST .)
+    DOPUKI          reduce using rule 48 (wyrazenie -> TEKST .)
+    IDENTYFIKATOR   reduce using rule 48 (wyrazenie -> TEKST .)
+    LICZBA          reduce using rule 48 (wyrazenie -> TEKST .)
+    WYPISZ          reduce using rule 48 (wyrazenie -> TEKST .)
+    ZWROC           reduce using rule 48 (wyrazenie -> TEKST .)
+    JEZELI          reduce using rule 48 (wyrazenie -> TEKST .)
+    WPISZ           reduce using rule 48 (wyrazenie -> TEKST .)
+    TEKST           reduce using rule 48 (wyrazenie -> TEKST .)
+    LA              reduce using rule 48 (wyrazenie -> TEKST .)
+    $end            reduce using rule 48 (wyrazenie -> TEKST .)
+    RB              reduce using rule 48 (wyrazenie -> TEKST .)
+
+
+state 27
+
+    (2) instrukcje -> instrukcja instrukcje .
+
+    $end            reduce using rule 2 (instrukcje -> instrukcja instrukcje .)
+    RB              reduce using rule 2 (instrukcje -> instrukcja instrukcje .)
+
+
+state 28
+
+    (14) deklaracja -> ZALOZMY IDENTYFIKATOR . ROWNE wyrazenie SEMIKOLON
+    (15) deklaracja -> ZALOZMY IDENTYFIKATOR . ROWNE wywolanie SEMIKOLON
+
+    ROWNE           shift and go to state 51
+
+
+state 29
+
+    (16) przypisz -> IDENTYFIKATOR PRZYPISZ . wyrazenie SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 53
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 30
+
+    (17) przypisz -> IDENTYFIKATOR LA . LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+    (49) wyrazenie -> IDENTYFIKATOR LA . LICZBA RA
+
+    LICZBA          shift and go to state 55
+
+
+state 31
+
+    (54) wywolanie -> IDENTYFIKATOR LP . parametry RP
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RP              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    parametry                      shift and go to state 56
+    wyrazenie                      shift and go to state 47
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 32
+
+    (29) warunek -> wyrazenie PODZIELONE_PRZEZ . wyrazenie
+    (39) wyrazenie -> wyrazenie PODZIELONE_PRZEZ . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 57
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 33
+
+    (30) warunek -> wyrazenie MNIEJSZE_OD . wyrazenie
+    (40) wyrazenie -> wyrazenie MNIEJSZE_OD . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 58
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 34
+
+    (31) warunek -> wyrazenie WIEKSZE_OD . wyrazenie
+    (41) wyrazenie -> wyrazenie WIEKSZE_OD . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 59
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 35
+
+    (32) warunek -> wyrazenie WYNOSI . wyrazenie
+    (42) wyrazenie -> wyrazenie WYNOSI . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 60
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 36
+
+    (33) warunek -> wyrazenie ROZNE . wyrazenie
+    (43) wyrazenie -> wyrazenie ROZNE . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 61
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 37
+
+    (36) wyrazenie -> wyrazenie PLUS . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 62
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 38
+
+    (37) wyrazenie -> wyrazenie MINUS . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 63
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 39
+
+    (38) wyrazenie -> wyrazenie RAZY . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 64
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 40
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR . LP parametry RP DWUKROPEK blok
+
+    LP              shift and go to state 65
+
+
+state 41
+
+    (26) petla -> DOPUKI LP . warunek RP DWUKROPEK blok
+    (29) warunek -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (31) warunek -> . wyrazenie WIEKSZE_OD wyrazenie
+    (32) warunek -> . wyrazenie WYNOSI wyrazenie
+    (33) warunek -> . wyrazenie ROZNE wyrazenie
+    (34) warunek -> . IDENTYFIKATOR
+    (35) warunek -> . LICZBA
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 67
+    LICZBA          shift and go to state 19
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    warunek                        shift and go to state 66
+    wyrazenie                      shift and go to state 16
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 42
+
+    (50) wypisz -> WYPISZ LP . wyrazenie RP SEMIKOLON
+    (51) wypisz -> WYPISZ LP . wywolanie RP SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 68
+    wywolanie                      shift and go to state 69
+    tablica                        shift and go to state 25
+
+state 43
+
+    (52) zwroc -> ZWROC LP . wyrazenie RP SEMIKOLON
+    (53) zwroc -> ZWROC LP . wywolanie RP SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 70
+    wywolanie                      shift and go to state 71
+    tablica                        shift and go to state 25
+
+state 44
+
+    (24) tablica -> LA parametry . RA
+
+    RA              shift and go to state 72
+
+
+state 45
+
+    (19) parametry -> IDENTYFIKATOR . PRZECINEK parametry
+    (45) wyrazenie -> IDENTYFIKATOR .
+    (49) wyrazenie -> IDENTYFIKATOR . LA LICZBA RA
+    (54) wywolanie -> IDENTYFIKATOR . LP parametry RP
+
+  ! shift/reduce conflict for PRZECINEK resolved as shift
+    PRZECINEK       shift and go to state 73
+    PLUS            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MINUS           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RAZY            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PODZIELONE_PRZEZ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MNIEJSZE_OD     reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WIEKSZE_OD      reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WYNOSI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ROZNE           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RA              reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RP              reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    LA              shift and go to state 74
+    LP              shift and go to state 31
+
+  ! PRZECINEK       [ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .) ]
+
+
+state 46
+
+    (20) parametry -> LICZBA . PRZECINEK parametry
+    (46) wyrazenie -> LICZBA .
+
+  ! shift/reduce conflict for PRZECINEK resolved as shift
+    PRZECINEK       shift and go to state 75
+    PLUS            reduce using rule 46 (wyrazenie -> LICZBA .)
+    MINUS           reduce using rule 46 (wyrazenie -> LICZBA .)
+    RAZY            reduce using rule 46 (wyrazenie -> LICZBA .)
+    PODZIELONE_PRZEZ reduce using rule 46 (wyrazenie -> LICZBA .)
+    MNIEJSZE_OD     reduce using rule 46 (wyrazenie -> LICZBA .)
+    WIEKSZE_OD      reduce using rule 46 (wyrazenie -> LICZBA .)
+    WYNOSI          reduce using rule 46 (wyrazenie -> LICZBA .)
+    ROZNE           reduce using rule 46 (wyrazenie -> LICZBA .)
+    RA              reduce using rule 46 (wyrazenie -> LICZBA .)
+    RP              reduce using rule 46 (wyrazenie -> LICZBA .)
+
+  ! PRZECINEK       [ reduce using rule 46 (wyrazenie -> LICZBA .) ]
+
+
+state 47
+
+    (21) parametry -> wyrazenie . PRZECINEK parametry
+    (22) parametry -> wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    PRZECINEK       shift and go to state 76
+    RA              reduce using rule 22 (parametry -> wyrazenie .)
+    RP              reduce using rule 22 (parametry -> wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 48
+
+    (44) wyrazenie -> wywolanie .
+
+    PRZECINEK       reduce using rule 44 (wyrazenie -> wywolanie .)
+    PLUS            reduce using rule 44 (wyrazenie -> wywolanie .)
+    MINUS           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RAZY            reduce using rule 44 (wyrazenie -> wywolanie .)
+    PODZIELONE_PRZEZ reduce using rule 44 (wyrazenie -> wywolanie .)
+    MNIEJSZE_OD     reduce using rule 44 (wyrazenie -> wywolanie .)
+    WIEKSZE_OD      reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYNOSI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ROZNE           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RA              reduce using rule 44 (wyrazenie -> wywolanie .)
+    SEMIKOLON       reduce using rule 44 (wyrazenie -> wywolanie .)
+    RP              reduce using rule 44 (wyrazenie -> wywolanie .)
+    ZALOZMY         reduce using rule 44 (wyrazenie -> wywolanie .)
+    FUNKCJA         reduce using rule 44 (wyrazenie -> wywolanie .)
+    DOPUKI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    IDENTYFIKATOR   reduce using rule 44 (wyrazenie -> wywolanie .)
+    LICZBA          reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYPISZ          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ZWROC           reduce using rule 44 (wyrazenie -> wywolanie .)
+    JEZELI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    WPISZ           reduce using rule 44 (wyrazenie -> wywolanie .)
+    TEKST           reduce using rule 44 (wyrazenie -> wywolanie .)
+    LA              reduce using rule 44 (wyrazenie -> wywolanie .)
+    $end            reduce using rule 44 (wyrazenie -> wywolanie .)
+    RB              reduce using rule 44 (wyrazenie -> wywolanie .)
+
+
+state 49
+
+    (27) instr_warunkowa -> JEZELI LP . warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI LP . warunek RP DWUKROPEK blok
+    (29) warunek -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (31) warunek -> . wyrazenie WIEKSZE_OD wyrazenie
+    (32) warunek -> . wyrazenie WYNOSI wyrazenie
+    (33) warunek -> . wyrazenie ROZNE wyrazenie
+    (34) warunek -> . IDENTYFIKATOR
+    (35) warunek -> . LICZBA
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 67
+    LICZBA          shift and go to state 19
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    warunek                        shift and go to state 82
+    wyrazenie                      shift and go to state 16
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 50
+
+    (55) wpisz -> WPISZ IDENTYFIKATOR . SEMIKOLON
+
+    SEMIKOLON       shift and go to state 83
+
+
+state 51
+
+    (14) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE . wyrazenie SEMIKOLON
+    (15) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE . wywolanie SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 84
+    wywolanie                      shift and go to state 85
+    tablica                        shift and go to state 25
+
+state 52
+
+    (45) wyrazenie -> IDENTYFIKATOR .
+    (49) wyrazenie -> IDENTYFIKATOR . LA LICZBA RA
+    (54) wywolanie -> IDENTYFIKATOR . LP parametry RP
+
+  ! shift/reduce conflict for LA resolved as shift
+    SEMIKOLON       reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PLUS            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MINUS           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RAZY            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PODZIELONE_PRZEZ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MNIEJSZE_OD     reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WIEKSZE_OD      reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WYNOSI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ROZNE           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ZALOZMY         reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    FUNKCJA         reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    DOPUKI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    IDENTYFIKATOR   reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    LICZBA          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WYPISZ          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ZWROC           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    JEZELI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WPISZ           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    TEKST           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    $end            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RB              reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RP              reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PRZECINEK       reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RA              reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    LA              shift and go to state 74
+    LP              shift and go to state 31
+
+  ! LA              [ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .) ]
+
+
+state 53
+
+    (16) przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie . SEMIKOLON
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    SEMIKOLON       shift and go to state 86
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 54
+
+    (46) wyrazenie -> LICZBA .
+
+    SEMIKOLON       reduce using rule 46 (wyrazenie -> LICZBA .)
+    PLUS            reduce using rule 46 (wyrazenie -> LICZBA .)
+    MINUS           reduce using rule 46 (wyrazenie -> LICZBA .)
+    RAZY            reduce using rule 46 (wyrazenie -> LICZBA .)
+    PODZIELONE_PRZEZ reduce using rule 46 (wyrazenie -> LICZBA .)
+    MNIEJSZE_OD     reduce using rule 46 (wyrazenie -> LICZBA .)
+    WIEKSZE_OD      reduce using rule 46 (wyrazenie -> LICZBA .)
+    WYNOSI          reduce using rule 46 (wyrazenie -> LICZBA .)
+    ROZNE           reduce using rule 46 (wyrazenie -> LICZBA .)
+    ZALOZMY         reduce using rule 46 (wyrazenie -> LICZBA .)
+    FUNKCJA         reduce using rule 46 (wyrazenie -> LICZBA .)
+    DOPUKI          reduce using rule 46 (wyrazenie -> LICZBA .)
+    IDENTYFIKATOR   reduce using rule 46 (wyrazenie -> LICZBA .)
+    LICZBA          reduce using rule 46 (wyrazenie -> LICZBA .)
+    WYPISZ          reduce using rule 46 (wyrazenie -> LICZBA .)
+    ZWROC           reduce using rule 46 (wyrazenie -> LICZBA .)
+    JEZELI          reduce using rule 46 (wyrazenie -> LICZBA .)
+    WPISZ           reduce using rule 46 (wyrazenie -> LICZBA .)
+    TEKST           reduce using rule 46 (wyrazenie -> LICZBA .)
+    LA              reduce using rule 46 (wyrazenie -> LICZBA .)
+    $end            reduce using rule 46 (wyrazenie -> LICZBA .)
+    RB              reduce using rule 46 (wyrazenie -> LICZBA .)
+    RP              reduce using rule 46 (wyrazenie -> LICZBA .)
+    PRZECINEK       reduce using rule 46 (wyrazenie -> LICZBA .)
+    RA              reduce using rule 46 (wyrazenie -> LICZBA .)
+
+
+state 55
+
+    (17) przypisz -> IDENTYFIKATOR LA LICZBA . RA PRZYPISZ wyrazenie SEMIKOLON
+    (49) wyrazenie -> IDENTYFIKATOR LA LICZBA . RA
+
+    RA              shift and go to state 87
+
+
+state 56
+
+    (54) wywolanie -> IDENTYFIKATOR LP parametry . RP
+
+    RP              shift and go to state 88
+
+
+state 57
+
+    (29) warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .
+    (39) wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    ZALOZMY         reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    FUNKCJA         reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    DOPUKI          reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    LICZBA          reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    WYPISZ          reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    ZWROC           reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    JEZELI          reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    WPISZ           reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    TEKST           reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    LA              reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    $end            reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    RB              reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    RP              reduce using rule 29 (warunek -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! PLUS            [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! MINUS           [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! RAZY            [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+
+
+state 58
+
+    (30) warunek -> wyrazenie MNIEJSZE_OD wyrazenie .
+    (40) wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    ZALOZMY         reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    FUNKCJA         reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    DOPUKI          reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    LICZBA          reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    WYPISZ          reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    ZWROC           reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    JEZELI          reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    WPISZ           reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    TEKST           reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    LA              reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    $end            reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    RB              reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    RP              reduce using rule 30 (warunek -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! PLUS            [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! MINUS           [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! RAZY            [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+
+
+state 59
+
+    (31) warunek -> wyrazenie WIEKSZE_OD wyrazenie .
+    (41) wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    ZALOZMY         reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    FUNKCJA         reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    DOPUKI          reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    LICZBA          reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    WYPISZ          reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    ZWROC           reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    JEZELI          reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    WPISZ           reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    TEKST           reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    LA              reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    $end            reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    RB              reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    RP              reduce using rule 31 (warunek -> wyrazenie WIEKSZE_OD wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! PLUS            [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! MINUS           [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! RAZY            [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+
+
+state 60
+
+    (32) warunek -> wyrazenie WYNOSI wyrazenie .
+    (42) wyrazenie -> wyrazenie WYNOSI wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    ZALOZMY         reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    FUNKCJA         reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    DOPUKI          reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    LICZBA          reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    WYPISZ          reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    ZWROC           reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    JEZELI          reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    WPISZ           reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    TEKST           reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    LA              reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    $end            reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    RB              reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    RP              reduce using rule 32 (warunek -> wyrazenie WYNOSI wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! PLUS            [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! MINUS           [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! RAZY            [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+
+
+state 61
+
+    (33) warunek -> wyrazenie ROZNE wyrazenie .
+    (43) wyrazenie -> wyrazenie ROZNE wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    ZALOZMY         reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    FUNKCJA         reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    DOPUKI          reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    LICZBA          reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    WYPISZ          reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    ZWROC           reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    JEZELI          reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    WPISZ           reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    TEKST           reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    LA              reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    $end            reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    RB              reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    RP              reduce using rule 33 (warunek -> wyrazenie ROZNE wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! PLUS            [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! MINUS           [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! RAZY            [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+
+
+state 62
+
+    (36) wyrazenie -> wyrazenie PLUS wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    RA              reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    SEMIKOLON       reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    RP              reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    ZALOZMY         reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    FUNKCJA         reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    DOPUKI          reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    LICZBA          reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    WYPISZ          reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    ZWROC           reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    JEZELI          reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    WPISZ           reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    TEKST           reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    LA              reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    $end            reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    RB              reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! PLUS            [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! MINUS           [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+  ! RAZY            [ reduce using rule 36 (wyrazenie -> wyrazenie PLUS wyrazenie .) ]
+
+
+state 63
+
+    (37) wyrazenie -> wyrazenie MINUS wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    RA              reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    SEMIKOLON       reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    RP              reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    ZALOZMY         reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    FUNKCJA         reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    DOPUKI          reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    LICZBA          reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    WYPISZ          reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    ZWROC           reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    JEZELI          reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    WPISZ           reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    TEKST           reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    LA              reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    $end            reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    RB              reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! PLUS            [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! MINUS           [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+  ! RAZY            [ reduce using rule 37 (wyrazenie -> wyrazenie MINUS wyrazenie .) ]
+
+
+state 64
+
+    (38) wyrazenie -> wyrazenie RAZY wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    RA              reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    SEMIKOLON       reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    RP              reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    ZALOZMY         reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    FUNKCJA         reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    DOPUKI          reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    LICZBA          reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    WYPISZ          reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    ZWROC           reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    JEZELI          reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    WPISZ           reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    TEKST           reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    LA              reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    $end            reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    RB              reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PODZIELONE_PRZEZ [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! PLUS            [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! MINUS           [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+  ! RAZY            [ reduce using rule 38 (wyrazenie -> wyrazenie RAZY wyrazenie .) ]
+
+
+state 65
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR LP . parametry RP DWUKROPEK blok
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RP              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    parametry                      shift and go to state 89
+    wyrazenie                      shift and go to state 47
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 66
+
+    (26) petla -> DOPUKI LP warunek . RP DWUKROPEK blok
+
+    RP              shift and go to state 90
+
+
+state 67
+
+    (34) warunek -> IDENTYFIKATOR .
+    (45) wyrazenie -> IDENTYFIKATOR .
+    (49) wyrazenie -> IDENTYFIKATOR . LA LICZBA RA
+    (54) wywolanie -> IDENTYFIKATOR . LP parametry RP
+
+    RP              reduce using rule 34 (warunek -> IDENTYFIKATOR .)
+    PODZIELONE_PRZEZ reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MNIEJSZE_OD     reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WIEKSZE_OD      reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    WYNOSI          reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    ROZNE           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    PLUS            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    MINUS           reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    RAZY            reduce using rule 45 (wyrazenie -> IDENTYFIKATOR .)
+    LA              shift and go to state 74
+    LP              shift and go to state 31
+
+
+state 68
+
+    (50) wypisz -> WYPISZ LP wyrazenie . RP SEMIKOLON
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    RP              shift and go to state 91
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 69
+
+    (51) wypisz -> WYPISZ LP wywolanie . RP SEMIKOLON
+    (44) wyrazenie -> wywolanie .
+
+  ! shift/reduce conflict for RP resolved as shift
+    RP              shift and go to state 92
+    PLUS            reduce using rule 44 (wyrazenie -> wywolanie .)
+    MINUS           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RAZY            reduce using rule 44 (wyrazenie -> wywolanie .)
+    PODZIELONE_PRZEZ reduce using rule 44 (wyrazenie -> wywolanie .)
+    MNIEJSZE_OD     reduce using rule 44 (wyrazenie -> wywolanie .)
+    WIEKSZE_OD      reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYNOSI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ROZNE           reduce using rule 44 (wyrazenie -> wywolanie .)
+
+  ! RP              [ reduce using rule 44 (wyrazenie -> wywolanie .) ]
+
+
+state 70
+
+    (52) zwroc -> ZWROC LP wyrazenie . RP SEMIKOLON
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    RP              shift and go to state 93
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 71
+
+    (53) zwroc -> ZWROC LP wywolanie . RP SEMIKOLON
+    (44) wyrazenie -> wywolanie .
+
+  ! shift/reduce conflict for RP resolved as shift
+    RP              shift and go to state 94
+    PLUS            reduce using rule 44 (wyrazenie -> wywolanie .)
+    MINUS           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RAZY            reduce using rule 44 (wyrazenie -> wywolanie .)
+    PODZIELONE_PRZEZ reduce using rule 44 (wyrazenie -> wywolanie .)
+    MNIEJSZE_OD     reduce using rule 44 (wyrazenie -> wywolanie .)
+    WIEKSZE_OD      reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYNOSI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ROZNE           reduce using rule 44 (wyrazenie -> wywolanie .)
+
+  ! RP              [ reduce using rule 44 (wyrazenie -> wywolanie .) ]
+
+
+state 72
+
+    (24) tablica -> LA parametry RA .
+
+    PODZIELONE_PRZEZ reduce using rule 24 (tablica -> LA parametry RA .)
+    MNIEJSZE_OD     reduce using rule 24 (tablica -> LA parametry RA .)
+    WIEKSZE_OD      reduce using rule 24 (tablica -> LA parametry RA .)
+    WYNOSI          reduce using rule 24 (tablica -> LA parametry RA .)
+    ROZNE           reduce using rule 24 (tablica -> LA parametry RA .)
+    PLUS            reduce using rule 24 (tablica -> LA parametry RA .)
+    MINUS           reduce using rule 24 (tablica -> LA parametry RA .)
+    RAZY            reduce using rule 24 (tablica -> LA parametry RA .)
+    PRZECINEK       reduce using rule 24 (tablica -> LA parametry RA .)
+    RA              reduce using rule 24 (tablica -> LA parametry RA .)
+    SEMIKOLON       reduce using rule 24 (tablica -> LA parametry RA .)
+    RP              reduce using rule 24 (tablica -> LA parametry RA .)
+    ZALOZMY         reduce using rule 24 (tablica -> LA parametry RA .)
+    FUNKCJA         reduce using rule 24 (tablica -> LA parametry RA .)
+    DOPUKI          reduce using rule 24 (tablica -> LA parametry RA .)
+    IDENTYFIKATOR   reduce using rule 24 (tablica -> LA parametry RA .)
+    LICZBA          reduce using rule 24 (tablica -> LA parametry RA .)
+    WYPISZ          reduce using rule 24 (tablica -> LA parametry RA .)
+    ZWROC           reduce using rule 24 (tablica -> LA parametry RA .)
+    JEZELI          reduce using rule 24 (tablica -> LA parametry RA .)
+    WPISZ           reduce using rule 24 (tablica -> LA parametry RA .)
+    TEKST           reduce using rule 24 (tablica -> LA parametry RA .)
+    LA              reduce using rule 24 (tablica -> LA parametry RA .)
+    $end            reduce using rule 24 (tablica -> LA parametry RA .)
+    RB              reduce using rule 24 (tablica -> LA parametry RA .)
+
+
+state 73
+
+    (19) parametry -> IDENTYFIKATOR PRZECINEK . parametry
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RA              reduce using rule 23 (parametry -> .)
+    RP              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    parametry                      shift and go to state 95
+    wyrazenie                      shift and go to state 47
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 74
+
+    (49) wyrazenie -> IDENTYFIKATOR LA . LICZBA RA
+
+    LICZBA          shift and go to state 96
+
+
+state 75
+
+    (20) parametry -> LICZBA PRZECINEK . parametry
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RA              reduce using rule 23 (parametry -> .)
+    RP              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    parametry                      shift and go to state 97
+    wyrazenie                      shift and go to state 47
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 76
+
+    (21) parametry -> wyrazenie PRZECINEK . parametry
+    (19) parametry -> . IDENTYFIKATOR PRZECINEK parametry
+    (20) parametry -> . LICZBA PRZECINEK parametry
+    (21) parametry -> . wyrazenie PRZECINEK parametry
+    (22) parametry -> . wyrazenie
+    (23) parametry -> .
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 45
+    LICZBA          shift and go to state 46
+    RA              reduce using rule 23 (parametry -> .)
+    RP              reduce using rule 23 (parametry -> .)
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 47
+    parametry                      shift and go to state 98
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 77
+
+    (39) wyrazenie -> wyrazenie PODZIELONE_PRZEZ . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 99
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 78
+
+    (40) wyrazenie -> wyrazenie MNIEJSZE_OD . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 100
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 79
+
+    (41) wyrazenie -> wyrazenie WIEKSZE_OD . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 101
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 80
+
+    (42) wyrazenie -> wyrazenie WYNOSI . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 102
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 81
+
+    (43) wyrazenie -> wyrazenie ROZNE . wyrazenie
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 103
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 82
+
+    (27) instr_warunkowa -> JEZELI LP warunek . RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI LP warunek . RP DWUKROPEK blok
+
+    RP              shift and go to state 104
+
+
+state 83
+
+    (55) wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .
+
+    ZALOZMY         reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    FUNKCJA         reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    DOPUKI          reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    LICZBA          reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    WYPISZ          reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    ZWROC           reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    JEZELI          reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    WPISZ           reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    TEKST           reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    LA              reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    $end            reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+    RB              reduce using rule 55 (wpisz -> WPISZ IDENTYFIKATOR SEMIKOLON .)
+
+
+state 84
+
+    (14) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie . SEMIKOLON
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    SEMIKOLON       shift and go to state 105
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 85
+
+    (15) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie . SEMIKOLON
+    (44) wyrazenie -> wywolanie .
+
+  ! shift/reduce conflict for SEMIKOLON resolved as shift
+    SEMIKOLON       shift and go to state 106
+    PLUS            reduce using rule 44 (wyrazenie -> wywolanie .)
+    MINUS           reduce using rule 44 (wyrazenie -> wywolanie .)
+    RAZY            reduce using rule 44 (wyrazenie -> wywolanie .)
+    PODZIELONE_PRZEZ reduce using rule 44 (wyrazenie -> wywolanie .)
+    MNIEJSZE_OD     reduce using rule 44 (wyrazenie -> wywolanie .)
+    WIEKSZE_OD      reduce using rule 44 (wyrazenie -> wywolanie .)
+    WYNOSI          reduce using rule 44 (wyrazenie -> wywolanie .)
+    ROZNE           reduce using rule 44 (wyrazenie -> wywolanie .)
+
+  ! SEMIKOLON       [ reduce using rule 44 (wyrazenie -> wywolanie .) ]
+
+
+state 86
+
+    (16) przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .
+
+    ZALOZMY         reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    FUNKCJA         reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    DOPUKI          reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    LICZBA          reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    WYPISZ          reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    ZWROC           reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    JEZELI          reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    WPISZ           reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    TEKST           reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    LA              reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    $end            reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+    RB              reduce using rule 16 (przypisz -> IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON .)
+
+
+state 87
+
+    (17) przypisz -> IDENTYFIKATOR LA LICZBA RA . PRZYPISZ wyrazenie SEMIKOLON
+    (49) wyrazenie -> IDENTYFIKATOR LA LICZBA RA .
+
+    PRZYPISZ        shift and go to state 107
+    PODZIELONE_PRZEZ reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    MNIEJSZE_OD     reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WIEKSZE_OD      reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WYNOSI          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    ROZNE           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    PLUS            reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    MINUS           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    RAZY            reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+
+
+state 88
+
+    (54) wywolanie -> IDENTYFIKATOR LP parametry RP .
+
+    ZALOZMY         reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    FUNKCJA         reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    DOPUKI          reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    IDENTYFIKATOR   reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    LICZBA          reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    WYPISZ          reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    ZWROC           reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    JEZELI          reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    WPISZ           reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    TEKST           reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    LA              reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    $end            reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    PODZIELONE_PRZEZ reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    MNIEJSZE_OD     reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    WIEKSZE_OD      reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    WYNOSI          reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    ROZNE           reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    PLUS            reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    MINUS           reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    RAZY            reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    RB              reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    PRZECINEK       reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    RA              reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    SEMIKOLON       reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+    RP              reduce using rule 54 (wywolanie -> IDENTYFIKATOR LP parametry RP .)
+
+
+state 89
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR LP parametry . RP DWUKROPEK blok
+
+    RP              shift and go to state 108
+
+
+state 90
+
+    (26) petla -> DOPUKI LP warunek RP . DWUKROPEK blok
+
+    DWUKROPEK       shift and go to state 109
+
+
+state 91
+
+    (50) wypisz -> WYPISZ LP wyrazenie RP . SEMIKOLON
+
+    SEMIKOLON       shift and go to state 110
+
+
+state 92
+
+    (51) wypisz -> WYPISZ LP wywolanie RP . SEMIKOLON
+
+    SEMIKOLON       shift and go to state 111
+
+
+state 93
+
+    (52) zwroc -> ZWROC LP wyrazenie RP . SEMIKOLON
+
+    SEMIKOLON       shift and go to state 112
+
+
+state 94
+
+    (53) zwroc -> ZWROC LP wywolanie RP . SEMIKOLON
+
+    SEMIKOLON       shift and go to state 113
+
+
+state 95
+
+    (19) parametry -> IDENTYFIKATOR PRZECINEK parametry .
+
+    RA              reduce using rule 19 (parametry -> IDENTYFIKATOR PRZECINEK parametry .)
+    RP              reduce using rule 19 (parametry -> IDENTYFIKATOR PRZECINEK parametry .)
+
+
+state 96
+
+    (49) wyrazenie -> IDENTYFIKATOR LA LICZBA . RA
+
+    RA              shift and go to state 114
+
+
+state 97
+
+    (20) parametry -> LICZBA PRZECINEK parametry .
+
+    RA              reduce using rule 20 (parametry -> LICZBA PRZECINEK parametry .)
+    RP              reduce using rule 20 (parametry -> LICZBA PRZECINEK parametry .)
+
+
+state 98
+
+    (21) parametry -> wyrazenie PRZECINEK parametry .
+
+    RA              reduce using rule 21 (parametry -> wyrazenie PRZECINEK parametry .)
+    RP              reduce using rule 21 (parametry -> wyrazenie PRZECINEK parametry .)
+
+
+state 99
+
+    (39) wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    RA              reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    SEMIKOLON       reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    RP              reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    ZALOZMY         reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    FUNKCJA         reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    DOPUKI          reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    LICZBA          reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    WYPISZ          reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    ZWROC           reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    JEZELI          reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    WPISZ           reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    TEKST           reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    LA              reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    $end            reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    RB              reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PLUS            [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! MINUS           [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! RAZY            [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! PODZIELONE_PRZEZ [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 39 (wyrazenie -> wyrazenie PODZIELONE_PRZEZ wyrazenie .) ]
+
+
+state 100
+
+    (40) wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    RA              reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    SEMIKOLON       reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    RP              reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    ZALOZMY         reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    FUNKCJA         reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    DOPUKI          reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    LICZBA          reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    WYPISZ          reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    ZWROC           reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    JEZELI          reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    WPISZ           reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    TEKST           reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    LA              reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    $end            reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    RB              reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PLUS            [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! MINUS           [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! RAZY            [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! PODZIELONE_PRZEZ [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 40 (wyrazenie -> wyrazenie MNIEJSZE_OD wyrazenie .) ]
+
+
+state 101
+
+    (41) wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    RA              reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    SEMIKOLON       reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    RP              reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    ZALOZMY         reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    FUNKCJA         reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    DOPUKI          reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    LICZBA          reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    WYPISZ          reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    ZWROC           reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    JEZELI          reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    WPISZ           reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    TEKST           reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    LA              reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    $end            reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    RB              reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PLUS            [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! MINUS           [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! RAZY            [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! PODZIELONE_PRZEZ [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 41 (wyrazenie -> wyrazenie WIEKSZE_OD wyrazenie .) ]
+
+
+state 102
+
+    (42) wyrazenie -> wyrazenie WYNOSI wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    RA              reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    SEMIKOLON       reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    RP              reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    ZALOZMY         reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    FUNKCJA         reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    DOPUKI          reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    LICZBA          reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    WYPISZ          reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    ZWROC           reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    JEZELI          reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    WPISZ           reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    TEKST           reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    LA              reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    $end            reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    RB              reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PLUS            [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! MINUS           [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! RAZY            [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! PODZIELONE_PRZEZ [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 42 (wyrazenie -> wyrazenie WYNOSI wyrazenie .) ]
+
+
+state 103
+
+    (43) wyrazenie -> wyrazenie ROZNE wyrazenie .
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for RAZY resolved as shift
+  ! shift/reduce conflict for PODZIELONE_PRZEZ resolved as shift
+  ! shift/reduce conflict for MNIEJSZE_OD resolved as shift
+  ! shift/reduce conflict for WIEKSZE_OD resolved as shift
+  ! shift/reduce conflict for WYNOSI resolved as shift
+  ! shift/reduce conflict for ROZNE resolved as shift
+    PRZECINEK       reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    RA              reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    SEMIKOLON       reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    RP              reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    ZALOZMY         reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    FUNKCJA         reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    DOPUKI          reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    IDENTYFIKATOR   reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    LICZBA          reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    WYPISZ          reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    ZWROC           reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    JEZELI          reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    WPISZ           reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    TEKST           reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    LA              reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    $end            reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    RB              reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .)
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+  ! PLUS            [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! MINUS           [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! RAZY            [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! PODZIELONE_PRZEZ [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! MNIEJSZE_OD     [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! WIEKSZE_OD      [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! WYNOSI          [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+  ! ROZNE           [ reduce using rule 43 (wyrazenie -> wyrazenie ROZNE wyrazenie .) ]
+
+
+state 104
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP . DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI LP warunek RP . DWUKROPEK blok
+
+    DWUKROPEK       shift and go to state 115
+
+
+state 105
+
+    (14) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .
+
+    ZALOZMY         reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    FUNKCJA         reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    DOPUKI          reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    LICZBA          reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    WYPISZ          reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    ZWROC           reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    JEZELI          reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    WPISZ           reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    TEKST           reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    LA              reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    $end            reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+    RB              reduce using rule 14 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON .)
+
+
+state 106
+
+    (15) deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .
+
+    ZALOZMY         reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    FUNKCJA         reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    DOPUKI          reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    LICZBA          reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    WYPISZ          reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    ZWROC           reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    JEZELI          reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    WPISZ           reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    TEKST           reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    LA              reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    $end            reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+    RB              reduce using rule 15 (deklaracja -> ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON .)
+
+
+state 107
+
+    (17) przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ . wyrazenie SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (24) tablica -> . LA parametry RA
+
+    IDENTYFIKATOR   shift and go to state 52
+    LICZBA          shift and go to state 54
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    wyrazenie                      shift and go to state 116
+    wywolanie                      shift and go to state 48
+    tablica                        shift and go to state 25
+
+state 108
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP . DWUKROPEK blok
+
+    DWUKROPEK       shift and go to state 117
+
+
+state 109
+
+    (26) petla -> DOPUKI LP warunek RP DWUKROPEK . blok
+    (25) blok -> . LB instrukcje RB
+
+    LB              shift and go to state 119
+
+    blok                           shift and go to state 118
+
+state 110
+
+    (50) wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .
+
+    ZALOZMY         reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    FUNKCJA         reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    DOPUKI          reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    LICZBA          reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    WYPISZ          reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    ZWROC           reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    JEZELI          reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    WPISZ           reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    TEKST           reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    LA              reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    $end            reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+    RB              reduce using rule 50 (wypisz -> WYPISZ LP wyrazenie RP SEMIKOLON .)
+
+
+state 111
+
+    (51) wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .
+
+    ZALOZMY         reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    FUNKCJA         reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    DOPUKI          reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    LICZBA          reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    WYPISZ          reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    ZWROC           reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    JEZELI          reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    WPISZ           reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    TEKST           reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    LA              reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    $end            reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+    RB              reduce using rule 51 (wypisz -> WYPISZ LP wywolanie RP SEMIKOLON .)
+
+
+state 112
+
+    (52) zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .
+
+    ZALOZMY         reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    FUNKCJA         reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    DOPUKI          reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    LICZBA          reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    WYPISZ          reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    ZWROC           reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    JEZELI          reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    WPISZ           reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    TEKST           reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    LA              reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    $end            reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+    RB              reduce using rule 52 (zwroc -> ZWROC LP wyrazenie RP SEMIKOLON .)
+
+
+state 113
+
+    (53) zwroc -> ZWROC LP wywolanie RP SEMIKOLON .
+
+    ZALOZMY         reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    FUNKCJA         reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    DOPUKI          reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    LICZBA          reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    WYPISZ          reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    ZWROC           reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    JEZELI          reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    WPISZ           reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    TEKST           reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    LA              reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    $end            reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+    RB              reduce using rule 53 (zwroc -> ZWROC LP wywolanie RP SEMIKOLON .)
+
+
+state 114
+
+    (49) wyrazenie -> IDENTYFIKATOR LA LICZBA RA .
+
+    PRZECINEK       reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    PLUS            reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    MINUS           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    RAZY            reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    PODZIELONE_PRZEZ reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    MNIEJSZE_OD     reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WIEKSZE_OD      reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WYNOSI          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    ROZNE           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    RA              reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    SEMIKOLON       reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    RP              reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    ZALOZMY         reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    FUNKCJA         reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    DOPUKI          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    IDENTYFIKATOR   reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    LICZBA          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WYPISZ          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    ZWROC           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    JEZELI          reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    WPISZ           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    TEKST           reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    LA              reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    $end            reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+    RB              reduce using rule 49 (wyrazenie -> IDENTYFIKATOR LA LICZBA RA .)
+
+
+state 115
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK . blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK . blok
+    (25) blok -> . LB instrukcje RB
+
+    LB              shift and go to state 119
+
+    blok                           shift and go to state 120
+
+state 116
+
+    (17) przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie . SEMIKOLON
+    (36) wyrazenie -> wyrazenie . PLUS wyrazenie
+    (37) wyrazenie -> wyrazenie . MINUS wyrazenie
+    (38) wyrazenie -> wyrazenie . RAZY wyrazenie
+    (39) wyrazenie -> wyrazenie . PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> wyrazenie . MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> wyrazenie . WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> wyrazenie . WYNOSI wyrazenie
+    (43) wyrazenie -> wyrazenie . ROZNE wyrazenie
+
+    SEMIKOLON       shift and go to state 121
+    PLUS            shift and go to state 37
+    MINUS           shift and go to state 38
+    RAZY            shift and go to state 39
+    PODZIELONE_PRZEZ shift and go to state 77
+    MNIEJSZE_OD     shift and go to state 78
+    WIEKSZE_OD      shift and go to state 79
+    WYNOSI          shift and go to state 80
+    ROZNE           shift and go to state 81
+
+
+state 117
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK . blok
+    (25) blok -> . LB instrukcje RB
+
+    LB              shift and go to state 119
+
+    blok                           shift and go to state 122
+
+state 118
+
+    (26) petla -> DOPUKI LP warunek RP DWUKROPEK blok .
+
+    ZALOZMY         reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    FUNKCJA         reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    DOPUKI          reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    IDENTYFIKATOR   reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    LICZBA          reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    WYPISZ          reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    ZWROC           reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    JEZELI          reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    WPISZ           reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    TEKST           reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    LA              reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    $end            reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+    RB              reduce using rule 26 (petla -> DOPUKI LP warunek RP DWUKROPEK blok .)
+
+
+state 119
+
+    (25) blok -> LB . instrukcje RB
+    (2) instrukcje -> . instrukcja instrukcje
+    (3) instrukcje -> . instrukcja
+    (4) instrukcja -> . deklaracja
+    (5) instrukcja -> . funkcja
+    (6) instrukcja -> . petla
+    (7) instrukcja -> . warunek
+    (8) instrukcja -> . wypisz
+    (9) instrukcja -> . zwroc
+    (10) instrukcja -> . przypisz
+    (11) instrukcja -> . wywolanie
+    (12) instrukcja -> . instr_warunkowa
+    (13) instrukcja -> . wpisz
+    (14) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
+    (15) deklaracja -> . ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON
+    (18) funkcja -> . FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok
+    (26) petla -> . DOPUKI LP warunek RP DWUKROPEK blok
+    (29) warunek -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (30) warunek -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (31) warunek -> . wyrazenie WIEKSZE_OD wyrazenie
+    (32) warunek -> . wyrazenie WYNOSI wyrazenie
+    (33) warunek -> . wyrazenie ROZNE wyrazenie
+    (34) warunek -> . IDENTYFIKATOR
+    (35) warunek -> . LICZBA
+    (50) wypisz -> . WYPISZ LP wyrazenie RP SEMIKOLON
+    (51) wypisz -> . WYPISZ LP wywolanie RP SEMIKOLON
+    (52) zwroc -> . ZWROC LP wyrazenie RP SEMIKOLON
+    (53) zwroc -> . ZWROC LP wywolanie RP SEMIKOLON
+    (16) przypisz -> . IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
+    (17) przypisz -> . IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+    (54) wywolanie -> . IDENTYFIKATOR LP parametry RP
+    (27) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> . JEZELI LP warunek RP DWUKROPEK blok
+    (55) wpisz -> . WPISZ IDENTYFIKATOR SEMIKOLON
+    (36) wyrazenie -> . wyrazenie PLUS wyrazenie
+    (37) wyrazenie -> . wyrazenie MINUS wyrazenie
+    (38) wyrazenie -> . wyrazenie RAZY wyrazenie
+    (39) wyrazenie -> . wyrazenie PODZIELONE_PRZEZ wyrazenie
+    (40) wyrazenie -> . wyrazenie MNIEJSZE_OD wyrazenie
+    (41) wyrazenie -> . wyrazenie WIEKSZE_OD wyrazenie
+    (42) wyrazenie -> . wyrazenie WYNOSI wyrazenie
+    (43) wyrazenie -> . wyrazenie ROZNE wyrazenie
+    (44) wyrazenie -> . wywolanie
+    (45) wyrazenie -> . IDENTYFIKATOR
+    (46) wyrazenie -> . LICZBA
+    (47) wyrazenie -> . tablica
+    (48) wyrazenie -> . TEKST
+    (49) wyrazenie -> . IDENTYFIKATOR LA LICZBA RA
+    (24) tablica -> . LA parametry RA
+
+    ZALOZMY         shift and go to state 14
+    FUNKCJA         shift and go to state 17
+    DOPUKI          shift and go to state 18
+    IDENTYFIKATOR   shift and go to state 15
+    LICZBA          shift and go to state 19
+    WYPISZ          shift and go to state 20
+    ZWROC           shift and go to state 21
+    JEZELI          shift and go to state 23
+    WPISZ           shift and go to state 24
+    TEKST           shift and go to state 26
+    LA              shift and go to state 22
+
+    instrukcje                     shift and go to state 123
+    instrukcja                     shift and go to state 3
+    deklaracja                     shift and go to state 4
+    funkcja                        shift and go to state 5
+    petla                          shift and go to state 6
+    warunek                        shift and go to state 7
+    wypisz                         shift and go to state 8
+    zwroc                          shift and go to state 9
+    przypisz                       shift and go to state 10
+    wywolanie                      shift and go to state 11
+    instr_warunkowa                shift and go to state 12
+    wpisz                          shift and go to state 13
+    wyrazenie                      shift and go to state 16
+    tablica                        shift and go to state 25
+
+state 120
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok . W_PRZECIWNYM_WYPADKU DWUKROPEK blok
+    (28) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .
+
+    W_PRZECIWNYM_WYPADKU shift and go to state 124
+    ZALOZMY         reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    FUNKCJA         reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    DOPUKI          reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    IDENTYFIKATOR   reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    LICZBA          reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    WYPISZ          reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    ZWROC           reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    JEZELI          reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    WPISZ           reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    TEKST           reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    LA              reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    $end            reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+    RB              reduce using rule 28 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok .)
+
+
+state 121
+
+    (17) przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .
+
+    ZALOZMY         reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    FUNKCJA         reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    DOPUKI          reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    IDENTYFIKATOR   reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    LICZBA          reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    WYPISZ          reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    ZWROC           reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    JEZELI          reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    WPISZ           reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    TEKST           reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    LA              reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    $end            reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+    RB              reduce using rule 17 (przypisz -> IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON .)
+
+
+state 122
+
+    (18) funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .
+
+    ZALOZMY         reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    FUNKCJA         reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    DOPUKI          reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    IDENTYFIKATOR   reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    LICZBA          reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    WYPISZ          reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    ZWROC           reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    JEZELI          reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    WPISZ           reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    TEKST           reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    LA              reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    $end            reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+    RB              reduce using rule 18 (funkcja -> FUNKCJA IDENTYFIKATOR LP parametry RP DWUKROPEK blok .)
+
+
+state 123
+
+    (25) blok -> LB instrukcje . RB
+
+    RB              shift and go to state 125
+
+
+state 124
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU . DWUKROPEK blok
+
+    DWUKROPEK       shift and go to state 126
+
+
+state 125
+
+    (25) blok -> LB instrukcje RB .
+
+    ZALOZMY         reduce using rule 25 (blok -> LB instrukcje RB .)
+    FUNKCJA         reduce using rule 25 (blok -> LB instrukcje RB .)
+    DOPUKI          reduce using rule 25 (blok -> LB instrukcje RB .)
+    IDENTYFIKATOR   reduce using rule 25 (blok -> LB instrukcje RB .)
+    LICZBA          reduce using rule 25 (blok -> LB instrukcje RB .)
+    WYPISZ          reduce using rule 25 (blok -> LB instrukcje RB .)
+    ZWROC           reduce using rule 25 (blok -> LB instrukcje RB .)
+    JEZELI          reduce using rule 25 (blok -> LB instrukcje RB .)
+    WPISZ           reduce using rule 25 (blok -> LB instrukcje RB .)
+    TEKST           reduce using rule 25 (blok -> LB instrukcje RB .)
+    LA              reduce using rule 25 (blok -> LB instrukcje RB .)
+    $end            reduce using rule 25 (blok -> LB instrukcje RB .)
+    RB              reduce using rule 25 (blok -> LB instrukcje RB .)
+    W_PRZECIWNYM_WYPADKU reduce using rule 25 (blok -> LB instrukcje RB .)
+
+
+state 126
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK . blok
+    (25) blok -> . LB instrukcje RB
+
+    LB              shift and go to state 119
+
+    blok                           shift and go to state 127
+
+state 127
+
+    (27) instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .
+
+    ZALOZMY         reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    FUNKCJA         reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    DOPUKI          reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    IDENTYFIKATOR   reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    LICZBA          reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    WYPISZ          reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    ZWROC           reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    JEZELI          reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    WPISZ           reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    TEKST           reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    LA              reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    $end            reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+    RB              reduce using rule 27 (instr_warunkowa -> JEZELI LP warunek RP DWUKROPEK blok W_PRZECIWNYM_WYPADKU DWUKROPEK blok .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LA in state 15 resolved as shift
+WARNING: shift/reduce conflict for PRZECINEK in state 45 resolved as shift
+WARNING: shift/reduce conflict for PRZECINEK in state 46 resolved as shift
+WARNING: shift/reduce conflict for LA in state 52 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 57 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 57 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 57 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 57 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 57 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 57 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 58 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 58 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 58 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 58 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 58 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 58 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 59 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 59 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 59 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 59 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 59 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 59 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 60 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 60 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 60 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 60 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 60 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 60 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 61 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 61 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 61 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 61 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 61 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 61 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 61 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 62 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 62 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 62 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 62 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 62 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 62 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 62 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 63 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 63 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 63 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 63 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 63 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 63 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 63 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 64 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 64 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 64 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 64 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 64 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 64 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 64 resolved as shift
+WARNING: shift/reduce conflict for RP in state 69 resolved as shift
+WARNING: shift/reduce conflict for RP in state 71 resolved as shift
+WARNING: shift/reduce conflict for SEMIKOLON in state 85 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 99 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 99 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 99 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 99 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 99 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 99 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 99 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 99 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 100 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 100 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 100 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 100 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 100 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 100 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 100 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 100 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 101 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 101 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 101 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 101 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 101 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 101 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 101 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 101 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 102 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 102 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 102 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 102 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 102 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 102 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 102 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 102 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 103 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 103 resolved as shift
+WARNING: shift/reduce conflict for RAZY in state 103 resolved as shift
+WARNING: shift/reduce conflict for PODZIELONE_PRZEZ in state 103 resolved as shift
+WARNING: shift/reduce conflict for MNIEJSZE_OD in state 103 resolved as shift
+WARNING: shift/reduce conflict for WIEKSZE_OD in state 103 resolved as shift
+WARNING: shift/reduce conflict for WYNOSI in state 103 resolved as shift
+WARNING: shift/reduce conflict for ROZNE in state 103 resolved as shift

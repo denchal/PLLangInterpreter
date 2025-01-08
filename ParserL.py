@@ -21,9 +21,10 @@ def p_instrukcja(p):
                   | wypisz
                   | zwroc
                   | przypisz
-                  | wywolanie
+                  | wywolanie SEMIKOLON
                   | instr_warunkowa
-                  | wpisz'''
+                  | wpisz
+                  | dlugosc SEMIKOLON'''
     p[0] = p[1]
 
 def p_deklaracja(p):
@@ -33,7 +34,8 @@ def p_deklaracja(p):
 
 def p_przypisz(p):
     '''przypisz : IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
-                | IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON'''
+                | IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
+                | IDENTYFIKATOR LA IDENTYFIKATOR RA PRZYPISZ wyrazenie SEMIKOLON'''
     if len(p) == 5:
         p[0] = ('przypisz', p[1], p[3])
     else:
@@ -56,11 +58,9 @@ def p_parametry(p):
     else:
         p[0] = []
 
-
 def p_tablica(p):
     '''tablica : LA parametry RA'''
     p[0] = p[2]
-
 
 def p_blok(p):
     '''blok : LB instrukcje RB'''
@@ -101,17 +101,30 @@ def p_wyrazenie(p):
                  | wyrazenie WYNOSI wyrazenie
                  | wyrazenie ROZNE wyrazenie
                  | wywolanie
+                 | IDENTYFIKATOR LA LICZBA RA
+                 | IDENTYFIKATOR LA indeksacja RA
                  | IDENTYFIKATOR
                  | LICZBA
                  | tablica
                  | TEKST
-                 | IDENTYFIKATOR LA LICZBA RA'''
+                 | dlugosc'''
     if len(p) == 4:
         p[0] = (p[2], p[1], p[3])
     elif len(p) == 5:
         p[0] = ('indeksowanie', p[1], p[3])
     else:
         p[0] = p[1]
+
+def p_indeksacja(p):
+    '''indeksacja : wyrazenie PRZECINEK indeksacja
+                  | wyrazenie
+                  | '''
+    if len(p) == 4:
+        p[0] = [p[1]] + p[3]
+    elif len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = []
 
 def p_wypisz(p):
     '''wypisz : WYPISZ LP wyrazenie RP SEMIKOLON
@@ -130,6 +143,10 @@ def p_wywolanie(p):
 def p_wpisz(p):
     '''wpisz : WPISZ IDENTYFIKATOR SEMIKOLON'''
     p[0] = ('wpisz', p[2])
+
+def p_dlugosc(p):
+    '''dlugosc : DLUGOSC LP wyrazenie RP'''
+    p[0] = ('dlugosc', p[3])
 
 # Obsługa błędów
 def p_error(p):

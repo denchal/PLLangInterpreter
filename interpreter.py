@@ -3,6 +3,7 @@ import re
 class Interpreter:
     def __init__(self):
         self.variables = {}  # Przechowywanie zmiennych: {nazwa: wartość}
+        self.globals = {} # Przechowywanie zmiennych globalnych: {nazwa: wartość}
         self.functions = {}  # Przechowywanie funkcji: {nazwa: (parametry, ciało)}
 
     def execute(self, node):
@@ -15,24 +16,41 @@ class Interpreter:
             if len(node) == 3:
                 _, name, value, = node
                 eval_value = self.eval_expression(value)
-                self.variables[name] = float(eval_value)
+                if name[-1] == 'G':
+                    self.globals[name] = eval_value
+                else:
+                    self.variables[name] = eval_value
             elif len(node) == 4:
                 _, name, indeks, value = node
                 eval_value = self.eval_expression(value)
-                if name not in self.variables:
+                if re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
+                    if indeks in self.variables:
+                        indeks = self.variables[indeks]
+                    elif indeks in self.globals:
+                        indeks = self.globals[indeks]
+                if name not in self.variables and name not in self.globals:
                     raise ValueError(f'Nieznana tablica: {name}')
                 elif re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
                     raise IndexError(f'Indeks musi być liczbą: {indeks}')
-                elif not isinstance(self.variables[name], list):
-                    raise IndexError(f'Próba indeksowania zmiennej! {name}')
-                elif int(indeks) >= len(self.variables[name]):
-                    raise IndexError(f'Indeks większy niż długość tablicy! {name}, {indeks}')
-                self.variables[name][int(indeks)] = float(eval_value)
+                if name in self.variables:
+                    if int(indeks) >= len(self.variables[name]):
+                        raise IndexError(f'Indeks większy niż długość tablicy! {name}, {indeks}')
+                elif name in self.globals:
+                    if int(indeks) >= len(self.globals[name]):
+                        raise IndexError(f'Indeks większy niż długość tablicy! {name}, {indeks}')
+                
+                if name[-1] == 'G':
+                    self.globals[name][int(indeks)] = eval_value
+                else:
+                    self.variables[name][int(indeks)] = eval_value
             
         elif node_type == 'deklaracja':  # Deklaracja zmiennej
             _, name, value = node
             eval_value = self.eval_expression(value)
-            self.variables[name] = eval_value
+            if name[-1] == 'G':
+                self.globals[name] = eval_value
+            else:
+                self.variables[name] = eval_value
             
         elif node_type == 'wypisz':  # Wypisywanie wartości
             _, value = node
@@ -52,11 +70,11 @@ class Interpreter:
                         return result
 
         elif node_type == 'instr_warunkowa':  # Instrukcja jeżeli
-            _, condition, body = node
-            if len(body) == 2:
-                if_body, else_body = body
+            if len(node) == 4:
+                _, condition, if_body, else_body = node
             else:
-                if_body, else_body = body, []
+                _, condition, if_body = node
+                else_body = []
             if self.eval_expression(condition):
                 for stmt in if_body:
                     result = self.execute(stmt)
@@ -98,28 +116,49 @@ class Interpreter:
             val = input()
             if re.match(r'[+-]?(\d+(\.\d*)?)', val) != None: # Użytkownik wpisał liczbę
                 eval_value = self.eval_expression(float(val))
-                self.variables[name] = eval_value
+                if name[-1] == 'G':
+                    self.globals[name] = eval_value
+                else:
+                    self.variables[name] = eval_value
+            elif re.match(r'"([^"]*)"', val) != None: 
+                eval_value = self.eval_expression(str(val))
+                if name[-1] == 'G':
+                    self.globals[name] = eval_value
+                else:
+                    self.variables[name] = eval_value
             else: # Użytkownik wpisał nazwę zmiennej
                 if val not in self.variables:
                     raise ValueError(f'Zmienna {val} nie istnieje')
                 else:
-                    self.variables[name] = self.variables[val]
-            
-
+                    if name[-1] == 'G' and val[-1] == 'G':
+                        self.globals[name] = self.globals[val]
+                    elif name[-1] == 'G':
+                        self.globals[name] = self.variables[val]
+                    elif val[-1] == 'G':
+                        self.variables[name] = self.globals[val]
+                    else:
+                        self.variables[name] = self.variables[val]
+        
         else:
             raise ValueError(f"Nieobsługiwany węzeł AST: {node_type}")
 
     def eval_expression(self, node):
         if isinstance(node, float):  # Jeśli to liczba lub tekst
             return node
+        
         elif isinstance(node, str):
-            if node not in self.variables:
+            if node not in self.variables and node not in self.globals:
                 if re.match(r'"([^"]*)"', node) != None:
                     return node.strip('"')
                 return node
-            return self.variables[node]
+            elif node in self.variables:
+                return self.variables[node]
+            else:
+                return self.globals[node]
+            
         elif isinstance(node, list):
             return node
+        
         node_type = node[0]
 
         if node_type == 'plus':  # Dodawanie
@@ -156,15 +195,49 @@ class Interpreter:
         
         elif node_type == 'indeksowanie':
             _, tab, indeks = node
-            if tab not in self.variables:
+            if isinstance(indeks, tuple):
+                while indeks[0] == 'indeksowanie':
+                    indeks = self.eval_expression(indeks)
+            if isinstance(indeks, list):
+                val = None
+                for sub in indeks:
+                    while isinstance(sub, list) and sub[0] == 'indeksowanie':
+                        sub = self.eval_expression(sub)
+                    while isinstance(sub, tuple) and sub[0] == 'indeksowanie':
+                        sub = self.eval_expression(sub)
+                    if re.match(r'[+-]?(\d+(\.\d*)?)', str(sub)) == None:
+                        if sub in self.variables:
+                            sub = self.variables[sub]
+                        elif sub in self.globals:
+                            sub = self.globals[sub]
+                    if tab[-1] == 'G':
+                        if val is None:
+                            val = self.eval_expression(self.globals[tab][int(sub)])
+                        else:
+                            val = val[int(sub)]
+                    else:
+                        if val is None:
+                            val = self.eval_expression(self.variables[tab][int(sub)])
+                        else:
+                            val = val[int(sub)]
+                return self.eval_expression(val)
+            if re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
+                if indeks in self.variables:
+                    indeks = self.variables[indeks]
+                elif indeks in self.globals:
+                    indeks = self.globals[indeks]
+            if tab not in self.variables and tab not in self.globals:
                 raise ValueError(f'Nieznana tablica: {tab}')
             elif re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
                 raise IndexError(f'Indeks musi być liczbą: {indeks}')
-            elif not isinstance(self.variables[tab], list):
-                raise IndexError(f'Próba indeksowania zmiennej! {tab}')
-            elif int(indeks) >= len(self.variables[tab]):
-                raise IndexError(f'Indeks większy niż długość tablicy! {tab}, {indeks}')
-            return self.eval_expression(self.variables[tab][int(indeks)])
+            if tab in self.variables:
+                if int(indeks) >= len(self.variables[tab]):
+                    raise IndexError(f'Indeks większy niż długość tablicy! {tab}, {indeks}')
+                return self.eval_expression(self.variables[tab][int(indeks)])
+            elif tab in self.globals:
+                if int(indeks) >= len(self.globals[tab]):
+                    raise IndexError(f'Indeks większy niż długość tablicy! {tab}, {indeks}')
+                return self.eval_expression(self.globals[tab][int(indeks)])
 
         elif node_type == 'wywolanie':  # Wywołanie funkcji
             _, name, args = node
@@ -187,5 +260,11 @@ class Interpreter:
                     break
             self.variables = original_variables  # Przywróć oryginalny kontekst
             return result
+        
+    
+        elif node_type == 'dlugosc': # Sprawdzenie długości tablicy lub tekstu
+            _, value = node
+            return len(self.eval_expression(value))
+        
         else:
             raise ValueError(f"Nieobsługiwane wyrażenie: {node}")

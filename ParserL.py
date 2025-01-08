@@ -14,29 +14,29 @@ def p_instrukcje(p):
         p[0] = [p[1]]
 
 def p_instrukcja(p):
-    '''instrukcja : deklaracja
+    '''instrukcja : deklaracja SEMIKOLON
                   | funkcja
                   | petla
-                  | warunek
-                  | wypisz
-                  | zwroc
-                  | przypisz
-                  | wywolanie SEMIKOLON
                   | instr_warunkowa
-                  | wpisz
+                  | wypisz SEMIKOLON
+                  | zwroc SEMIKOLON
+                  | przypisz SEMIKOLON
+                  | wywolanie SEMIKOLON
+                  | wpisz SEMIKOLON
                   | dlugosc SEMIKOLON'''
     p[0] = p[1]
 
 def p_deklaracja(p):
-    '''deklaracja : ZALOZMY IDENTYFIKATOR ROWNE wyrazenie SEMIKOLON
-                  | ZALOZMY IDENTYFIKATOR ROWNE wywolanie SEMIKOLON'''
+    '''deklaracja : ZALOZMY IDENTYFIKATOR ROWNE wyrazenie
+                  | ZALOZMY IDENTYFIKATOR ROWNE wywolanie'''
     p[0] = ('deklaracja', p[2], p[4])
 
 def p_przypisz(p):
-    '''przypisz : IDENTYFIKATOR PRZYPISZ wyrazenie SEMIKOLON
-                | IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie SEMIKOLON
-                | IDENTYFIKATOR LA IDENTYFIKATOR RA PRZYPISZ wyrazenie SEMIKOLON'''
-    if len(p) == 5:
+    '''przypisz : IDENTYFIKATOR PRZYPISZ wyrazenie
+                | IDENTYFIKATOR LA LICZBA RA PRZYPISZ wyrazenie
+                | IDENTYFIKATOR LA IDENTYFIKATOR RA PRZYPISZ wyrazenie
+                | IDENTYFIKATOR LA parametry RA PRZYPISZ wyrazenie'''
+    if len(p) == 4:
         p[0] = ('przypisz', p[1], p[3])
     else:
         p[0] = ('przypisz', p[1], p[3], p[6])
@@ -127,13 +127,13 @@ def p_indeksacja(p):
         p[0] = []
 
 def p_wypisz(p):
-    '''wypisz : WYPISZ LP wyrazenie RP SEMIKOLON
-              | WYPISZ LP wywolanie RP SEMIKOLON'''
+    '''wypisz : WYPISZ LP wyrazenie RP
+              | WYPISZ LP wywolanie RP'''
     p[0] = ('wypisz', p[3])
 
 def p_zwroc(p):
-    '''zwroc : ZWROC LP wyrazenie RP SEMIKOLON
-             | ZWROC LP wywolanie RP SEMIKOLON'''
+    '''zwroc : ZWROC LP wyrazenie RP
+             | ZWROC LP wywolanie RP'''
     p[0] = ('zwroc', p[3])
 
 def p_wywolanie(p):
@@ -141,7 +141,7 @@ def p_wywolanie(p):
     p[0] = ('wywolanie', p[1], p[3])
 
 def p_wpisz(p):
-    '''wpisz : WPISZ IDENTYFIKATOR SEMIKOLON'''
+    '''wpisz : WPISZ IDENTYFIKATOR'''
     p[0] = ('wpisz', p[2])
 
 def p_dlugosc(p):

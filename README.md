@@ -31,6 +31,8 @@ Wnętrze języka korzysta z generatora PLY.
   <li>Rekurencję</li>
 </ul>
 
+Wartości do funkcji przekazywane są zawsze przez wartość, ale dzięki zmiennym globalnym możemy uzyskać pseudo przekazywanie przez referencję.
+
 Przykładowa funkcja obliczająca n-ty wyraz ciągu fibonacciego w tym języku:
 ```
 funkcja fib[n]: {

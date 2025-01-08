@@ -20,9 +20,10 @@ Wnętrze języka korzysta z generatora PLY.
 
 ### Aktualnie interpreter obsługuje:
 <ul>
-  <li>Deklaracje zmiannych (typu numerycznego, tekstowego i tablicowego, w tym tablice wielowymiarowe)</li>
+  <li>Deklaracje zmiannych (typu numerycznego, tekstowego i tablicowego, w tym tablice wielowymiarowe i zagnieżdżone)</li>
   <li>Zmienne globalne, mające w nazwie sufix 'G'</li>
-  <li>Deklaracje funkcji wraz z ich wywoływaniem</li>
+  <li>Deklaracje funkcji</li>
+  <li>Wywołania funkcji</li>
   <li>Zmianę wartości zmiennej po jej deklaracji wraz z przypisaniem wyniku funkcji</li>
   <li>Wypisywanie na standardowym wyjściu tekstów oraz wartości zmiennych</li>
   <li>Pętle</li>

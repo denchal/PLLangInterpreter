@@ -20,11 +20,13 @@ Wnętrze języka korzysta z generatora PLY.
 
 ### Aktualnie interpreter obsługuje:
 <ul>
-  <li>Deklaracje zmiannych (typu numerycznego, tekstowego i tablicowego)</li>
+  <li>Deklaracje zmiannych (typu numerycznego, tekstowego i tablicowego, w tym tablice wielowymiarowe)</li>
+  <li>Zmienne globalne, mające w nazwie sufix 'G'</li>
   <li>Deklaracje funkcji wraz z ich wywoływaniem</li>
   <li>Zmianę wartości zmiennej po jej deklaracji wraz z przypisaniem wyniku funkcji</li>
   <li>Wypisywanie na standardowym wyjściu tekstów oraz wartości zmiennych</li>
   <li>Pętle</li>
+  <li>Instrukcje warunkowe</li>
   <li>Wprowadzanie wartości ze standardowego wejścia</li>
   <li>Rekurencję</li>
 </ul>
@@ -56,4 +58,45 @@ wypisz [x];
 Alternatywnie możemy od razu wyświetlić zwróconą przez funkcję wartość, np.:
 ```
 wypisz [fib[15]];
+```
+
+Przykład bardziej zaawansowanej funkcji znajdującej się w pliku przyklad7.pl, czyli dfs:
+```
+funkcja przeszukiwanie_wgłąb[u]: {
+    wypisz[u];
+    odwiedzoneG<u> przypisz 1;
+    załóżmy i równe 0;
+    dopóki [i mniejsze długość[grafG<u>]]: {
+        jeżeli [odwiedzoneG<grafG<u,i>> wynosi 0]: {
+            przeszukiwanie_wgłąb[grafG<u,i>];
+        }
+        i przypisz i plus 1;
+    }
+}
+
+
+załóżmy grafG równe <
+                    <1>,
+                    <2,4>,
+                    <5>,
+                    <>,
+                    <>,
+                    <>
+                    >;
+
+załóżmy odwiedzoneG równe <0, 0, 0, 0, 0, 0>;
+przeszukiwanie_wgłąb[0];
+wypisz[odwiedzoneG];
+```
+Wynikiem działania tego programu jest zapisane w globalnej tablicy odwiedzone:
+```
+[1.0, 1.0, 1.0, 0.0, 1.0, 1.0]
+```
+Oraz wypisanie na standardowym wyjściu kolejnych odwiedzonych wierzchołków:
+```
+0.0
+1.0
+2.0
+5.0
+4.0
 ```

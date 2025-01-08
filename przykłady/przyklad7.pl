@@ -13,10 +13,13 @@ funkcja przeszukiwanie_wgłąb[u]: {
 
 załóżmy grafG równe <
                     <1>,
-                    <0>,
-                    <0>
+                    <2,4>,
+                    <5>,
+                    <>,
+                    <>,
+                    <>
                     >;
 
-załóżmy odwiedzoneG równe <0, 0, 0>;
+załóżmy odwiedzoneG równe <0, 0, 0, 0, 0, 0>;
 przeszukiwanie_wgłąb[0];
 wypisz[odwiedzoneG];

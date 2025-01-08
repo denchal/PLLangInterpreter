@@ -6,6 +6,12 @@ class Interpreter:
         self.globals = {} # Przechowywanie zmiennych globalnych: {nazwa: wartość}
         self.functions = {}  # Przechowywanie funkcji: {nazwa: (parametry, ciało)}
 
+    def set_value_in_array(self, array, indices, value):
+        ref = array
+        for index in indices[:-1]:
+            ref = ref[index]
+        ref[indices[-1]] = value
+
     def execute(self, node):
         if node is None:
             return None
@@ -22,8 +28,25 @@ class Interpreter:
                     self.variables[name] = eval_value
             elif len(node) == 4:
                 _, name, indeks, value = node
-                eval_value = self.eval_expression(value)
-                if re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
+                indiecies = []
+                if isinstance(indeks, list):
+                    for sub in indeks:
+                        while isinstance(sub, list) and sub[0] == 'indeksowanie':
+                            sub = self.eval_expression(sub)
+                        while isinstance(sub, tuple) and sub[0] == 'indeksowanie':
+                            sub = self.eval_expression(sub)
+                        if re.match(r'[+-]?(\d+(\.\d*)?)', str(sub)) == None:
+                            if sub in self.variables:
+                                sub = self.variables[sub]
+                            elif sub in self.globals:
+                                sub = self.globals[sub]
+                        indiecies.append(int(sub))
+                    if name[-1] == 'G':
+                        self.set_value_in_array(self.globals[name], indiecies, value)
+                    else:
+                        self.set_value_in_array(self.variables[name], indiecies, value)
+                    return
+                elif re.match(r'[+-]?(\d+(\.\d*)?)', str(indeks)) == None:
                     if indeks in self.variables:
                         indeks = self.variables[indeks]
                     elif indeks in self.globals:
@@ -38,7 +61,7 @@ class Interpreter:
                 elif name in self.globals:
                     if int(indeks) >= len(self.globals[name]):
                         raise IndexError(f'Indeks większy niż długość tablicy! {name}, {indeks}')
-                
+                eval_value = self.eval_expression(value)
                 if name[-1] == 'G':
                     self.globals[name][int(indeks)] = eval_value
                 else:

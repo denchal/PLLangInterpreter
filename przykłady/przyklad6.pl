@@ -8,4 +8,4 @@ załóżmy grafG równe <
 załóżmy i równe 0;
 załóżmy j równe 2;    
 wypisz[grafG<i, j, i>];
-wypisz[grafG<grafG<i, j, i>, 1>];
+wypisz[grafG<grafG<i, j, i>, 0>];

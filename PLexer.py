@@ -32,7 +32,8 @@ reserved = {'załóżmy' : 'ZALOZMY',
             '{' : 'LB',
             '}' : 'RB',
             '<' : 'LA',
-            '>' : 'RA'
+            '>' : 'RA',
+            'długość' : 'DLUGOSC'
             }
 
 tokens += reserved.values()
@@ -66,6 +67,7 @@ t_PRZYPISZ = r'przypisz'
 t_WYPISZ = r'wypisz'
 t_ZWROC = r'zwróć'
 t_WPISZ = r'wpisz'
+t_DLUGOSC = r'długość'
 
 def t_TEKST(t):
     r'"([^"]*)"'
